@@ -91,10 +91,10 @@ const routes = [
   { path: '/icons/brands', name: 'Brands', element: Brands },
   { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
   { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
-  { path: '/notifications/badges', name: 'Badges', element: Badges },
-  { path: '/notifications/modals', name: 'Modals', element: Modals },
-  { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
-  { path: '/widgets', name: 'Widgets', element: Widgets },
+  // { path: '/notifications/badges', name: 'Badges', element: Badges },
+  // { path: '/notifications/modals', name: 'Modals', element: Modals },
+  // { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
+  //{ path: '/widgets', name: 'Widgets', element: Widgets },
 ]
 
 export default routes

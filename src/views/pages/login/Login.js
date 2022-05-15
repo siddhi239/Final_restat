@@ -1,139 +1,94 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardGroup,
-  CCol,
-  CContainer,
-  CForm,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
-  CRow,
-} from "@coreui/react";
-import CIcon from "@coreui/icons-react";
-import { cilLockLocked, cilUser } from "@coreui/icons";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-
-const clientId = "458739503333-amt59gqddvpbj5ibgcn74mk99m37ub5c.apps.googleusercontent.com";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import GoogleButton from "react-google-button";
+import { useUserAuth } from "src/context/UserAuthContext";
+import { getAuth } from "firebase/auth";
 
 const Login = () => {
-  const [showloginButton, setShowloginButton] = useState(true);
-  const [showlogoutButton, setShowlogoutButton] = useState(false);
-  const onLoginSuccess = (res) => {
-    console.log("Login Success:", res.profileObj);
-    setShowloginButton(false);
-    setShowlogoutButton(true);
-  }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn, googleSignIn, sendPasswordResetEmail } = useUserAuth();
+  const navigate = useNavigate();
+  
 
-  const onLoginFailure = (res) => {
-    console.log("Login Failed:", res);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-  const onSignoutSuccess = () => {
-    alert("You have been logged out successfully");
-    console.clear();
-    setShowloginButton(true);
-    setShowlogoutButton(false);
-  }
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // const sendPasswordReset = async (email) => {
+  //   try {
+  //     await sendPasswordResetEmail(email);
+  //     alert("Password reset link sent!");
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert(err.message);
+  //   }
+  // };
 
   return (
-    <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <CContainer>
-        <CRow className="justify-content-center">
-          <CCol md={8}>
-            <CCardGroup>
-              <CCard className="p-4">
-                <CCardBody>
-                  <CForm>
-                    <h1>Login</h1>
-                    <p className="text-medium-emphasis">Sign In to your account</p>
-                    <CInputGroup className="mb-3">
-                      <CInputGroupText>
-                        <CIcon icon={cilUser} />
-                      </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
-                    </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupText>
-                        <CIcon icon={cilLockLocked} />
-                      </CInputGroupText>
-                      <CFormInput
-                        type="password"
-                        placeholder="Password"
-                        autoComplete="current-password"
-                      />
-                    </CInputGroup>
-                    <CRow>
-                      <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
-                          Login
-                        </CButton>
-                      </CCol>
-                      
-                      <CCol>
-                      <h4> OR </h4>
-                      {showloginButton ?
-                        <GoogleLogin
-                          clientId={clientId}
-                          buttonText="Sign In"
-                          onSuccess={onLoginSuccess}
-                          onFailure={onLoginFailure}
-                          cookiePolicy={'single_host_origin'}
-                          isSignedIn={true}
-                        /> : null}
-                      </CCol>
-                      <CCol xs={6} className="text-right">
-                        <CButton color="link" className="px-0">
-                          Forgot password?
-                        </CButton>
-                      </CCol>
-                    </CRow>
-                  </CForm>
-                </CCardBody>
-              </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
-                  </div>
-                </CCardBody>
-              </CCard>
-            </CCardGroup>
-          </CCol>
-        </CRow>
-      </CContainer>
-   
-      {/* {showloginButton ?
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Sign In"
-          onSuccess={onLoginSuccess}
-          onFailure={onLoginFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
-        /> : null}
+    <>
+      <div className="p-4 box">
+        <h2 className="mb-3">Firebase Auth Login</h2>
+        {error && <Alert variant="danger">{error}</Alert>}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="email"
+              placeholder="Email address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
 
-      {showlogoutButton ?
-        <GoogleLogout
-          clientId={clientId}
-          buttonText="Sign Out"
-          onLogoutSuccess={onSignoutSuccess}
-        >
-        </GoogleLogout> : null
-      } */}
-    </div>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <div className="d-grid gap-2">
+            <Button variant="primary" type="Submit">
+              Log In
+            </Button>
+          </div>
+        </Form>
+        <hr />
+        <div>
+          <GoogleButton
+            className="g-btn"
+            type="dark"
+            onClick={handleGoogleSignIn}
+          />
+        </div>
+      </div>
+      {/* <div className="p-4 box mt-3 text-center">
+         <Button onClick={sendPasswordReset}>Forgot Password</Button>
+      </div> */}
+      <div className="p-4 box mt-3 text-center">
+        Don&apos;t have an account? <Link to="/register">Sign up</Link>
+      </div>
+    </>
   );
 };
 
