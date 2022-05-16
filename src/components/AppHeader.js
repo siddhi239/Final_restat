@@ -64,7 +64,19 @@ const AppHeader = () => {
         </CHeaderNav>
         <CHeaderNav className="ms-3">
           <CNavItem>
-          <div className="p-4 box mt-3 text-center">
+          <div className="dropdown">
+            <a href="#" id="imageDropdown" data-toggle="dropdown">
+              <img style={{borderRadius: '50%', height: '50px'}} src={ photoURL }/>
+            </a>
+            <ul className="dropdown-menu" role="menu" aria-labelledby="imageDropdown">
+              <li role="presentation"><a role="menuitem" href="#">Menu item 1</a></li>
+              <li role="presentation"><a role="menuitem" href="#">Menu item 2</a></li>
+              <li role="presentation"><a role="menuitem" href="#">Menu item 3</a></li>
+              <li role="presentation" className="divider"></li>
+              <li role="presentation"><a role="menuitem" href="#">Menu item 4</a></li>
+            </ul>
+        </div>
+          {/* <div className="p-4 box mt-3 text-center">
               <img style={{borderRadius: '50%', height: '50px'}} src={ photoURL }/>
               {user.name}
           </div>
@@ -72,7 +84,7 @@ const AppHeader = () => {
             <Button variant="primary" onClick={handleLogout}>
               Log out
             </Button>
-          </div>
+          </div> */}
             {/* <CNavLink href="/login">Sign in/ Register</CNavLink> */}
           </CNavItem>
         </CHeaderNav>
