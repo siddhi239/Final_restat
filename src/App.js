@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { UserAuthContextProvider } from './context/UserAuthContext'
 import ProtectedRoute from './context/ProtectedRoute'
 import './scss/style.scss'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -19,6 +21,7 @@ const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
+const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
 
 class App extends Component {
   render() {
@@ -34,6 +37,7 @@ class App extends Component {
               <Route exact path="/500" name="Page 500" element={<Page500 />} />
               <Route exact path="/HD" name="Page 500" element={<Page500 />} />
               <Route path="/home" name="Home" element={<ProtectedRoute> <DefaultLayout /> </ProtectedRoute>} />
+              <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>
