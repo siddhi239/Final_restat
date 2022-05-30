@@ -41,8 +41,8 @@ export const createUserDocument = async (user, additionalData) => {
     try{
       userRef.set({
         name,
-        email,
         affiliation,
+        email,
         aoi,
         createdAt: new Date()
       })

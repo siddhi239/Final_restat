@@ -22,6 +22,7 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
+const Mylibrary = React.lazy(() => import('./views/dashboard/mylibrary'))
 
 class App extends Component {
   render() {
@@ -38,6 +39,7 @@ class App extends Component {
               <Route exact path="/HD" name="Page 500" element={<Page500 />} />
               <Route path="/home" name="Home" element={<ProtectedRoute> <DefaultLayout /> </ProtectedRoute>} />
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
+              <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

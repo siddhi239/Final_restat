@@ -30,7 +30,7 @@ const Myprofile = () => {
         setState({ ...state, [name]: value });
     };
 
-   createUserDocument(user, {name}, {affiliation}, {email}, {aoi})
+   createUserDocument(user, { name, affiliation, email, aoi })
 
     // const handlesubmit = (e) => {
     //     e.preventDefault();

@@ -10,6 +10,8 @@ import {
   cilPencil,
   cilPuzzle,
   cilSpeedometer,
+  cilMoodGood,
+  cilBarcode,
   cilStar,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
@@ -28,16 +30,16 @@ const _nav = [
     component: CNavItem,
     name: 'My Profile',
     to: '/myprofile',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilMoodGood} customClassName="nav-icon" />,
     badge: {
       color: 'info',
     },
   },
   {
     component: CNavItem,
-    name: 'Dashboard',
+    name: 'My Library',
     to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
     badge: {
       color: 'info',
     },

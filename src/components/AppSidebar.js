@@ -30,8 +30,12 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
-        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
+        <div style={{textAlign: 'left'}}>
+        <h2 >Restat</h2>
+        </div>
+        
+        {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
+        {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
