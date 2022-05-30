@@ -6,7 +6,10 @@ import GoogleButton from "react-google-button";
 import { useUserAuth } from "src/context/UserAuthContext";
 import { getAuth } from "firebase/auth";
 import './login.css';
+// <<<<<<< HEAD
+// =======
 
+// >>>>>>> 2272aebd2a25f01cca6cca9329641315f31d944a
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
