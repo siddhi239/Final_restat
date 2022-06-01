@@ -6,16 +6,18 @@ import GoogleButton from "react-google-button";
 import { useUserAuth } from "src/context/UserAuthContext";
 import { getAuth } from "firebase/auth";
 import './login.css';
-// <<<<<<< HEAD
-// =======
+import { firestore } from 'src/firebase';
+import { addDoc, collection, getDocs, doc } from "firebase/firestore"
 
-// >>>>>>> 2272aebd2a25f01cca6cca9329641315f31d944a
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { logIn, googleSignIn, sendPasswordResetEmail } = useUserAuth();
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  const usersCollectionRef = collection(firestore, "myprofile")
+  //const docRef = collection(firestore, 'myprofile', doc(user.uid));
   
 
   const handleSubmit = async (e) => {
@@ -33,21 +35,17 @@ const Login = () => {
     e.preventDefault();
     try {
       await googleSignIn();
+        // const id = user.uid;
+        // const n = user.displayName;
+        // const e = user.email;
+        // await addDoc( usersCollectionRef , { Name: n , Affiliation: " ", Email: e , AOI: " ", UID: id})
+      
       navigate("/home");
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  // const sendPasswordReset = async (email) => {
-  //   try {
-  //     await sendPasswordResetEmail(email);
-  //     alert("Password reset link sent!");
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert(err.message);
-  //   }
-  // };
 
   return (
     <>

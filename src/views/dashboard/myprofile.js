@@ -6,41 +6,37 @@ import { useUserAuth } from "src/context/UserAuthContext";
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { toast } from 'react-toastify';
 import app from 'src/firebase'
-import { auth, createUserDocument } from 'src/firebase';
+import { firestore } from 'src/firebase';
+import { addDoc, collection, getDocs } from "firebase/firestore"
+import { async } from '@firebase/util';
 
-const initialState = {
-    name: "",
-    affiliation: "",
-    email: "",
-    aoi: "",
-};
+
 
 const Myprofile = () => {
+    var count = 0;
+    const [users, setUsers] = useState([]);
 
-    const [state, setState] = useState(initialState);
-
-    const { name, affiliation, email, aoi } = state;
+    const [newAffiliation, setNewAffiliation] = useState("")
+    const [newAOI, setNewAOI] = useState("")
 
     const { user } = useUserAuth();
+    const id = user.uid;
     const n = user.displayName;
     const e = user.email;
+    const usersCollectionRef = collection(firestore, "myprofile")
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setState({ ...state, [name]: value });
-    };
+    const createMyProfile = async () => {
+        await addDoc(usersCollectionRef, { Name: n, Affiliation: " ", Email: e, AOI: " ", UID: id})
+    }
 
-   createUserDocument(user, { name, affiliation, email, aoi })
+    useEffect(() => {
+        const getUsers = async () => {
+            const data = await getDocs(usersCollectionRef)
+            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        }
 
-    // const handlesubmit = (e) => {
-    //     e.preventDefault();
-    //     if (!name || !affiliation || !email || !aoi) {
-    //         alert("Please fill data in all fields")
-    //         }else{
-                
-    //         alert("successful")
-    //     }
-    // };
+        getUsers();
+    }, []);
 
     return (
         <>
@@ -48,46 +44,57 @@ const Myprofile = () => {
                 <AppSidebar />
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeader />
-                    <div className="p-4 box">
-                        <h2 className="mb-3">My Profile details</h2>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="formName">
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" />
-                                <Form.Text className="text-muted">
-                                    Full name as it appears on your articles
-                                </Form.Text>
-                            </Form.Group>
+                    {users.map((u) => {
+                        if(u.UID === user.uid){
+                            count = 1;
+                            return(
 
-                            <Form.Group className="mb-3" controlId="formAffiliation">
-                                <Form.Label>Affiliation</Form.Label>
-                                <Form.Control type="text" />
-                                <Form.Text className="text-muted">
-                                    E.g., Professor of Physics, Princeton University
-                                </Form.Text>
-                            </Form.Group>
+                                    <div className="p-4 box">
+                                       ,
+                                    <h2 className="mb-3">My Profile details</h2>
+                                        <Form>
+                                            <Form.Group className="mb-3" controlId="formName">
+                                                <Form.Label>Name</Form.Label>
+                                                <Form.Control type="text" value={n} disabled />
+                                            </Form.Group>
+    
+                                            <Form.Group className="mb-3" controlId="formAffiliation">
+                                                <Form.Label>Affiliation</Form.Label>
+                                                <Form.Control type="text" value={ u.Affiliation } disabled/>
+                                            </Form.Group>
+    
+                                            <Form.Group className="mb-2" controlId="formEmail">
+                                                <Form.Label>Email address</Form.Label>
+                                                <Form.Control type="email" value={e} disabled />
+                                            </Form.Group>
+    
+                                            <Form.Group className="mb-3" controlId="formAreaofInterest">
+                                                <Form.Label>Area of Interest</Form.Label>
+                                                <Form.Control type="text" value = { u.AOI } disabled />
+                                            </Form.Group>
+    
+                                        </Form>
+                                    </div>
+                                );
+                            }
+                        }
 
-                            <Form.Group className="mb-2" controlId="formEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" />
-                            </Form.Group>
+                    )
+                }
+                
+                {
+                    (() => {
+                        if(count === 0) {
+                                createMyProfile()
+                            }
+                    })()  
+            }
 
-                            <Form.Group className="mb-3" controlId="formAreaofInterest">
-                                <Form.Label>Area of Interest</Form.Label>
-                                <Form.Control type="text" />
-                                <Form.Text className="text-muted">
-                                    E.g., general relativity, unified field theory
-                                </Form.Text>
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" label="Agree All terms & conditions" />
-                            </Form.Group>
-                            <Button variant="primary" type="submit" onClick={ createUserDocument }>
-                                Submit
-                            </Button>
-                        </Form>
-                    </div>
+                        
+                    
+                        
+                    
+                    
                     <AppFooter />
                 </div>
             </div>

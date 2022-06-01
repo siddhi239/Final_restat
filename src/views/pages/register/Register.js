@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "src/context/UserAuthContext";
+import { CreateUserDoc } from "../../../context/createUserDoc"
+import { firestore } from 'src/firebase';
+import { addDoc, collection, getDocs } from "firebase/firestore"
 import './register.css'
 
 const Signup = () => {
@@ -11,18 +14,27 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
+  
+  //const usersCollectionRef = collection(firestore, "myprofile/")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await signUp(email, password);
+
+      // const id = signUp.uid;
+      // const n = signUp.displayName;
+      // const e = signUp.email;
+      // await addDoc(usersCollectionRef, { Name: n, Affiliation: " ", Email: e, AOI: " ", UID: id})
+
       navigate("/login");
     } catch (err) {
       setError(err.message);
     }
+    
   };
-
+  
   return (
     <>
       <div className="p-4 box">
@@ -56,6 +68,7 @@ const Signup = () => {
         Already have an account? <Link to="/login">Log In</Link>
       </div>
     </>
+    
   );
 };
 

@@ -37,6 +37,15 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'Update Profile',
+    to: '/updateprofile',
+    icon: <CIcon icon={cilMoodGood} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+    },
+  },
+  {
+    component: CNavItem,
     name: 'My Library',
     to: '/dashboard',
     icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
