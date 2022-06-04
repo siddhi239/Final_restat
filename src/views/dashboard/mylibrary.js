@@ -12,7 +12,6 @@ import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "fi
 
 import './mysearch.css';
 
-const userCardTemplate = document.querySelector("[data-user-template]")
 
 const Mylibrary= () =>{
     const [user, setUser] = useState([])
@@ -24,19 +23,37 @@ const Mylibrary= () =>{
         hl: "en"
     };
     const url =`https://serpapi.com/search.json?engine=google_scholar&q=${params.q}&hl=${params.hl}&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
+    const userCardTemplate = document.querySelector("[datausertemplate]")
+    const userCardContainer = document.querySelector("[datausercardscontainer]")
+
     const fetchData = () =>{
         fetch(url)
             .then(response => {
             // console.log(res.data.organic_results[0])
             return response.json();
 
-            }).then((data) => {
-            // const card = userCardTemplate.content.cloneNode(true).children[0]
-            // console.log(card)
+            }).then(data => {
+            
+            // data = data.organic_results[0]
+            var userData = data;
+            var newData = userData.organic_results[0];
+            console.log(newData)
+            
+            newData.forEach(u => {
+                
+                const card = userCardTemplate.content.cloneNode(true).children[0]  
+                const header = card.querySelector("[data-header]")
+                const body = card.querySelector("[data-body]")
+                header.textContent = u.publication_info
+                body.textContent= u.link
+                userCardContainer.append(card)
+                // console.log(user)
+            })
+
             //console.log(data)
-            let val = data.organic_results[0].publication_info
-            // console.log(val)
-            setUser(val)
+            // let val = data.organic_results[0].publication_info
+            // // console.log(val)
+            // setUser(val)
             })
             .catch(err => {
                 console.log(err)
@@ -70,19 +87,20 @@ return(
                             <div>
                                 <div className="form-outline">
                                 <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." aria-label="Search" />
+                                <button className="search-button" type="submit" id="submit">Go!</button>
                                 </div>
                             </div> 
                                                 
-                            <div className='usercards'></div>
-                            <template data-user-template>
+                            <div className='usercards' data-user-cards-container></div>
+                            <template datausertemplate>
                             <div className='card'>
-                                <div className='header'></div>
-                                <div className='body'></div>
+                                <div className='header' data-header></div>
+                                <div className='body' data-body></div>
                             </div>
                             </template> 
 
 
-                            {user.summary}               
+                            {/* {user.summary}                */}
                             
                         </div> 
                     }
