@@ -23,6 +23,7 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 // const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
 const Mylibrary = React.lazy(() => import('./views/dashboard/mylibrary'))
+const Newfile = React.lazy(() => import('./views/dashboard/newfile'))
 const Updateprofile = React.lazy(() => import('./views/dashboard/updateprofile'))
 const CreateUserDoc = React.lazy(() => import('./context/createUserDoc'))
 
@@ -43,6 +44,7 @@ class App extends Component {
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
               <Route path="/updateprofile" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
+              <Route path="/newfile" name="New File" element={<ProtectedRoute> <Newfile /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

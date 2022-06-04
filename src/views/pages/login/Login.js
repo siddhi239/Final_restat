@@ -8,7 +8,8 @@ import { getAuth } from "firebase/auth";
 import './login.css';
 import { firestore } from 'src/firebase';
 import { addDoc, collection, getDocs, doc } from "firebase/firestore"
-
+import CIcon from '@coreui/icons-react'
+import { cilNewspaper } from '@coreui/icons'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -49,8 +50,13 @@ const Login = () => {
 
   return (
     <>
-      <div className="p-4 box">
-        <h2 className="mb-3">Firebase Auth Login</h2>
+      <div className="p-4 box" >
+        <div style={{display:'inline-flex'}}>
+        
+      <CIcon style={{textAlign: 'left', padding:'2px',height: '50px', width: '50px'}} icon={cilNewspaper} customClassName="nav-icon" />
+      &nbsp;&nbsp;
+        <h2 className="mb-3">Restat</h2>
+        </div>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
