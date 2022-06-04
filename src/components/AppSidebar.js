@@ -14,6 +14,7 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
+import { cilNewspaper } from '@coreui/icons'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
@@ -29,9 +30,13 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
+    
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <div style={{textAlign: 'left'}}>
-        <h2 >Restat</h2>
+     
+        <div style={{display:'inline-flex'}}>
+      <CIcon style={{textAlign: 'left', padding:'2px',height: '50px', width: '50px'}} icon={cilNewspaper} customClassName="nav-icon" />
+      &nbsp;&nbsp;
+        <h1 style={{textAlign: 'right'}}>Restat</h1>
         </div>
         
         {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
