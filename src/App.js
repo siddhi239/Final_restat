@@ -2,6 +2,7 @@ import React, { Component, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { UserAuthContextProvider } from './context/UserAuthContext'
 import ProtectedRoute from './context/ProtectedRoute'
+import ProtectedRoutesAdmin from './context/ProtectedRoutesAdmin'
 import './scss/style.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,7 +25,7 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
 const Mylibrary = React.lazy(() => import('./views/dashboard/mylibrary'))
 const Updateprofile = React.lazy(() => import('./views/dashboard/updateprofile'))
-const CreateUserDoc = React.lazy(() => import('./context/createUserDoc'))
+const AdminDashboard = React.lazy(() => import('./admin/admin_dashboard'))
 
 class App extends Component {
   render() {
@@ -34,15 +35,13 @@ class App extends Component {
           <UserAuthContextProvider>
             <Routes>
             <Route exact path="*" name="Login Page" element={<Login />} />
-              {/* <Route exact path="/login" name="Login Page" element={<Login />} /> */}
               <Route exact path="/register" name="Register Page" element={<Register />} />
-              {/* <Route exact path="/404" name="Page 404" element={<Page404 />} />
-              <Route exact path="/500" name="Page 500" element={<Page500 />} /> */}
-              {/* <Route exact path="/HD" name="Page 500" element={<Page500 />} /> */}
               <Route path="/home" name="Home" element={<ProtectedRoute> <DefaultLayout /> </ProtectedRoute>} />
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
               <Route path="/updateprofile" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
+              <Route path="/" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
+              <Route exact path="/admin_dashboard" name="Admin Page" element={<AdminDashboard />} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

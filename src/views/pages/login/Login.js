@@ -24,8 +24,13 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      await logIn(email, password);
-      navigate("/home");
+      if(email === "admin@gmail.com" && password === "admin123"){
+        navigate("/admin_dashboard")
+      }else
+      {
+        await logIn(email, password);
+        navigate("/home");
+      }
     } catch (err) {
       setError(err.message);
     }
@@ -34,12 +39,7 @@ const Login = () => {
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
     try {
-      await googleSignIn();
-        // const id = user.uid;
-        // const n = user.displayName;
-        // const e = user.email;
-        // await addDoc( usersCollectionRef , { Name: n , Affiliation: " ", Email: e , AOI: " ", UID: id})
-      
+      await googleSignIn();      
       navigate("/home");
     } catch (error) {
       console.log(error.message);

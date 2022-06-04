@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from "react-bootstrap";
+import { CDropdown } from '@coreui/react'
 import {
   CContainer,
   CHeader,
@@ -11,6 +12,9 @@ import {
   CHeaderDivider,
   CHeaderNav,
   CHeaderToggler,
+  CDropdownToggle,
+  CDropdownMenu,
+  CDropdownItem,
   CNavLink,
   CNavItem,
 } from '@coreui/react'
@@ -64,7 +68,9 @@ const AppHeader = () => {
         <CHeaderNav className="ms-3">
           <CNavItem>
           <div className="p-4 box mt-3 text-center">
-              <img style={{borderRadius: '50%', height: '40px'}} src={ photoURL } referrerPolicy="no-referrer" title= {user.displayName}/>
+              <img style={{borderRadius: '50%', height: '40px'}} src={ photoURL } referrerPolicy="no-referrer" title= {user.displayName}
+                  
+              />
           </div>
           {/* <div className="d-grid gap-2">
             <Button variant="primary" onClick={handleLogout}>

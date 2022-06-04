@@ -38,7 +38,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'My Library',
-    to: '/dashboard',
+    to: '/mylibrary',
     icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
     badge: {
       color: 'info',
