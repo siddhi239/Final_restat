@@ -12,9 +12,15 @@ import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "fi
 
 import './mysearch.css';
 
+const userCardTemplate = document.querySelector("[data-user-template]")
+const userCardContainer = document.querySelector("[data-user-cards-container]")
+const searchInput = document.querySelector("[data-search]")
 
 const Mylibrary= () =>{
     const [user, setUser] = useState([])
+    const [pub_sum, setPubsum] = useState([])
+    const [cite, setCite] = useState([])
+    const [resr, setResr] = useState([])
     const [loading, setLoading] = useState(false);
     
     const params = {
@@ -23,9 +29,18 @@ const Mylibrary= () =>{
         hl: "en"
     };
     const url =`https://serpapi.com/search.json?engine=google_scholar&q=${params.q}&hl=${params.hl}&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
-    const userCardTemplate = document.querySelector("[datausertemplate]")
-    const userCardContainer = document.querySelector("[datausercardscontainer]")
+    
+    let u = []
 
+    // searchInput.addEventListener('input' , e => {
+    //     const value = e.target.value.toLowerCase()
+    //     user.forEach(user =>{
+            
+    //         const isVisible = user.title.includes(value) || user.snippet.includes(value)
+    //         user.element.classList.toggle("hide", !isVisible)
+    //         // console.log(users)
+    //     })
+    // })
     const fetchData = () =>{
         fetch(url)
             .then(response => {
@@ -36,24 +51,32 @@ const Mylibrary= () =>{
             
             // data = data.organic_results[0]
             var userData = data;
-            var newData = userData.organic_results[0];
-            console.log(newData)
-            
-            newData.forEach(u => {
+            var newData = userData.organic_results[0]
+            // var newResource = userData.organic_results[0].resources[0]
+            // console.log(newData)
+            const arr = Array.from(newData);
+            u = arr.map(u => {
                 
                 const card = userCardTemplate.content.cloneNode(true).children[0]  
                 const header = card.querySelector("[data-header]")
                 const body = card.querySelector("[data-body]")
-                header.textContent = u.publication_info
-                body.textContent= u.link
+                header.textContent = u.title
+                body.textContent= u.snippet
                 userCardContainer.append(card)
                 // console.log(user)
+                return { title: u.title, snippet: u.snippet, element: card }
             })
 
             //console.log(data)
-            // let val = data.organic_results[0].publication_info
-            // // console.log(val)
-            // setUser(val)
+            
+            let sum = data.organic_results[0]
+            let reso = data.organic_results[0].resources[0]
+            
+            // console.log(val)
+            setUser(sum)
+            setResr(reso)
+
+            // setUser(newResource)
             })
             .catch(err => {
                 console.log(err)
@@ -86,12 +109,20 @@ return(
                             <h2 className="mb-3">Library</h2>
                             <div>
                                 <div className="form-outline">
-                                <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." aria-label="Search" />
-                                <button className="search-button" type="submit" id="submit">Go!</button>
+                                <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." aria-label="Search" data-search/>
+                                <button className="search-button" type="submit" id="submit" name="search-go">Go!</button>
                                 </div>
+                                
                             </div> 
                                                 
                             <div className='usercards' data-user-cards-container></div>
+                            <div className='card'>
+                                <div className='header' data-header>abc</div>
+                                <div className='body' data-body>body</div>
+                            </div> <div className='card'>
+                                <div className='header' data-header>xyz</div>
+                                <div className='body' data-body>body</div>
+                            </div>
                             <template datausertemplate>
                             <div className='card'>
                                 <div className='header' data-header></div>
@@ -99,9 +130,10 @@ return(
                             </div>
                             </template> 
 
-
-                            {/* {user.summary}                */}
-                            
+                            <b> Title:</b>{user.title} <br/>
+                            <b> Snippet:</b>{user.snippet} <br/>
+                            <b>Resource Title:</b> {resr.title}   <br/>  
+                            <b>Resource Link: </b>{resr.link}<br/>
                         </div> 
                     }
                     

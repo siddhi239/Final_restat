@@ -33,3 +33,12 @@
   .hide {
     display: none;
   }
+.searchWrapper {
+    position: relative;
+}
+.searchWrapper::after {
+    content: '🔍';
+    position: absolute;
+    top: 7px;
+    right: 15px;
+}
