@@ -24,6 +24,7 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 // const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
 const Mylibrary = React.lazy(() => import('./views/dashboard/mylibrary'))
+const Newfile = React.lazy(() => import('./views/dashboard/newfile'))
 const Updateprofile = React.lazy(() => import('./views/dashboard/updateprofile'))
 const AdminDashboard = React.lazy(() => import('./admin/admin_dashboard'))
 

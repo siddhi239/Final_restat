@@ -13,6 +13,8 @@ import {
   cilMoodGood,
   cilBarcode,
   cilStar,
+  cilSettings,
+  cilAccountLogout,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -40,6 +42,24 @@ const _nav = [
     name: 'My Library',
     to: '/mylibrary',
     icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+    },
+  },
+  {
+    component: CNavItem,
+    name: 'Settings',
+    to: '/dashboard',
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+    },
+  },
+  {
+    component: CNavItem,
+    name: 'Sign Out',
+    to: '/login',
+    icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
     badge: {
       color: 'info',
     },

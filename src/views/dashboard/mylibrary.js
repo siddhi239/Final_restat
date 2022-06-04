@@ -10,153 +10,138 @@ import app from 'src/firebase'
 import { firestore } from 'src/firebase';
 import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "firebase/firestore"
 
+import './mysearch.css';
 
+const userCardTemplate = document.querySelector("[data-user-template]")
+const userCardContainer = document.querySelector("[data-user-cards-container]")
+const searchInput = document.querySelector("[data-search]")
 
-
-const Mylibrary = () => {
-    var count = 0;
-    const [users, setUsers] = useState([]);
+const Mylibrary= () =>{
+    const [user, setUser] = useState([])
+    const [pub_sum, setPubsum] = useState([])
+    const [cite, setCite] = useState([])
+    const [resr, setResr] = useState([])
+    const [loading, setLoading] = useState(false);
     
-
-    const [newAffiliation, setNewAffiliation] = useState("")
-    const [newAOI, setNewAOI] = useState("")
-
-    const { user } = useUserAuth();
-    const id = user.uid;
-    const n = user.displayName;
-    const e = user.email;
-    let navigate = useNavigate();
-    //const docSnap = DocumentSnapshot<>
-    const usersCollectionRef = collection(firestore, "myprofile")
-    // const userDoc = doc(firestore, "myprofile", id);
-    // const docSnap = getDoc(userDoc);
+    const params = {
+        engine: "google_scholar",
+        q: "IOT",
+        hl: "en"
+    };
+    const url =`https://serpapi.com/search.json?engine=google_scholar&q=${params.q}&hl=${params.hl}&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
     
+    let u = []
 
-    // const checkDoc = async () => {
-        
-       
-    //     //const docSnap = await getDoc(userDoc);
-
-    // }
-
-    const createMyProfile = async () => {
-        
-
-            await setDoc(doc(firestore, "myprofile", id), 
-            {   Name: n, 
-                Affiliation: " ", 
-                Email: e, 
-                AOI: " "
-            })
+    // searchInput.addEventListener('input' , e => {
+    //     const value = e.target.value.toLowerCase()
+    //     user.forEach(user =>{
             
-        //  }
-        }
+    //         const isVisible = user.title.includes(value) || user.snippet.includes(value)
+    //         user.element.classList.toggle("hide", !isVisible)
+    //         // console.log(users)
+    //     })
+    // })
+    const fetchData = () =>{
+        fetch(url)
+            .then(response => {
+            // console.log(res.data.organic_results[0])
+            return response.json();
 
+            }).then(data => {
+            
+            // data = data.organic_results[0]
+            var userData = data;
+            var newData = userData.organic_results[0]
+            // var newResource = userData.organic_results[0].resources[0]
+            // console.log(newData)
+            const arr = Array.from(newData);
+            u = arr.map(u => {
+                
+                const card = userCardTemplate.content.cloneNode(true).children[0]  
+                const header = card.querySelector("[data-header]")
+                const body = card.querySelector("[data-body]")
+                header.textContent = u.title
+                body.textContent= u.snippet
+                userCardContainer.append(card)
+                // console.log(user)
+                return { title: u.title, snippet: u.snippet, element: card }
+            })
+
+            //console.log(data)
+            
+            let sum = data.organic_results[0]
+            let reso = data.organic_results[0].resources[0]
+            
+            // console.log(val)
+            setUser(sum)
+            setResr(reso)
+
+            // setUser(newResource)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
+                setLoading(false);
+              });
+    }
 
     useEffect(() => {
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef)
-            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
-        }
+        setLoading(true);
+        fetchData()
+    })
 
-        getUsers();
-    }, []);
+    // if (loading) {
+    //     return <p>Data is loading...</p>;
+    //   }
 
-    return (
-        <>
-            <div>
-                <AppSidebar />
+   
+
+return(
+    <>
+    <div>
+    <AppSidebar />
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeader />
-                    {users.map((u) => {
-                            if(user.uid === u.id){
-                                return(
-                                    <div key={ u.id } className="p-4 box">
-                                {/* <h2 className="mb-3"> { u.Name }</h2> */}
-
-                                <h2 className="mb-3">My Profile details</h2>
-                                    <Form>
-                                        <Form.Group className="mb-3" controlId="formName">
-                                            <Form.Label>Name</Form.Label>
-                                            <Form.Control type="text" value={ u.Name } disabled />
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-3" controlId="formAffiliation">
-                                            <Form.Label>Affiliation</Form.Label>
-                                            <Form.Control type="text" value={ u.Affiliation } disabled/>
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-2" controlId="formEmail">
-                                            <Form.Label>Email address</Form.Label>
-                                            <Form.Control type="email" value={ u.Email } disabled />
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-3" controlId="formAreaofInterest">
-                                            <Form.Label>Area of Interest</Form.Label>
-                                            <Form.Control type="text" value = { u.AOI } disabled />
-                                        </Form.Group>
-
-                                        <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
-                                            Update
-                                        </Button>
-
-                                    </Form>
+                    {
+                        // <link rel="stylesheet" href="mysearch.css">
+                        <div className="p-4 box">
+                            <h2 className="mb-3">Library</h2>
+                            <div>
+                                <div className="form-outline">
+                                <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." aria-label="Search" data-search/>
+                                <button className="search-button" type="submit" id="submit" name="search-go">Go!</button>
                                 </div>
-                                );
-                            }
-                            else{
-                                count = count + 1;
-                            }
-                            
-                        })
+                                
+                            </div> 
+                                                
+                            <div className='usercards' data-user-cards-container></div>
+                            <div className='card'>
+                                <div className='header' data-header>abc</div>
+                                <div className='body' data-body>body</div>
+                            </div> <div className='card'>
+                                <div className='header' data-header>xyz</div>
+                                <div className='body' data-body>body</div>
+                            </div>
+                            <template datausertemplate>
+                            <div className='card'>
+                                <div className='header' data-header></div>
+                                <div className='body' data-body></div>
+                            </div>
+                            </template> 
+
+                            <b> Title:</b>{user.title} <br/>
+                            <b> Snippet:</b>{user.snippet} <br/>
+                            <b>Resource Title:</b> {resr.title}   <br/>  
+                            <b>Resource Link: </b>{resr.link}<br/>
+                        </div> 
                     }
-                    {users.map((u) => {
-                            if(count === users.length){
-                                createMyProfile();
-                                return(
-                                    <div key={ u.id } className="p-4 box">
-                                {/* <h2 className="mb-3"> { u.Name }</h2> */}
-
-                                <h2 className="mb-3">My Profile details</h2>
-                                    <Form>
-                                        <Form.Group className="mb-3" controlId="formName">
-                                            <Form.Label>Name</Form.Label>
-                                            <Form.Control type="text" value={ u.Name } disabled />
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-3" controlId="formAffiliation">
-                                            <Form.Label>Affiliation</Form.Label>
-                                            <Form.Control type="text" value={ u.Affiliation } disabled/>
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-2" controlId="formEmail">
-                                            <Form.Label>Email address</Form.Label>
-                                            <Form.Control type="email" value={ u.Email } disabled />
-                                        </Form.Group>
-
-                                        <Form.Group className="mb-3" controlId="formAreaofInterest">
-                                            <Form.Label>Area of Interest</Form.Label>
-                                            <Form.Control type="text" value = { u.AOI } disabled />
-                                        </Form.Group>
-
-                                        <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
-                                            Update
-                                        </Button>
-
-                                    </Form>
-                                </div>
-
-                                );
-
-                                }
-                            
-                        })
-                    }
+                    
                     <AppFooter />
                 </div>
-            </div>
-        </>
-    );
-}
+            </div> 
+    </>
+)
+};
 
 export default Mylibrary;
