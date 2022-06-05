@@ -9,8 +9,9 @@ import { Link, useNavigate } from "react-router-dom";
 import app from 'src/firebase'
 import { firestore } from 'src/firebase';
 import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "firebase/firestore"
-
+import CIcon from '@coreui/icons-react'
 import './mysearch.css';
+import { cilMagnifyingGlass } from '@coreui/icons';
 
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector("[data-user-cards-container]")
@@ -107,8 +108,13 @@ return(
                             <h2 className="mb-3">Library</h2>
                             <div>
                                 <div className="form-outline">
-                                <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." aria-label="Search" data-search/>
-                                <button className="search-button" type="submit" id="submit" name="search-go">Go!</button>
+                                <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." aria-label="Search" data-search>
+                               
+                                </input>
+                                <button className="search-button" type="submit" id="submit" name="search-go" style={{padding: '0',border: 'none',background: 'none'}}>
+                                <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" style={{height:'25px', widht: '25px'}}/>
+                                </button>
+                                
                                 </div>
                                 
                             </div> 
@@ -128,10 +134,12 @@ return(
                             </div>
                             </template> 
 
-                            <b> Title:</b>{user.title} <br/>
+                            <h2>Title:</h2>{user.title} <br/>
                             <b> Snippet:</b>{user.snippet} <br/>
                             <b>Resource Title:</b> {resr.title}   <br/>  
                             <b>Resource Link: </b>{resr.link}<br/>
+
+
                         </div> 
                     }
                     
