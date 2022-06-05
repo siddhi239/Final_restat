@@ -23,6 +23,7 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Logout = React.lazy(() => import('./views/pages/logout'))
 // const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 // const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
 const Mylibrary = React.lazy(() => import('./views/dashboard/mylibrary'))
 const Newfile = React.lazy(() => import('./views/dashboard/newfile'))
@@ -39,6 +40,7 @@ class App extends Component {
             <Route exact path="*" name="Login Page" element={<Login />} />
               <Route exact path="/register" name="Register Page" element={<Register />} />
               <Route path="/home" name="Home" element={<ProtectedRoute> <DefaultLayout /> </ProtectedRoute>} />
+              <Route path="/dashboard" name="Dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
               <Route path="/updateprofile" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />

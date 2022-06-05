@@ -19,7 +19,7 @@ const Newfile= () => {
 
             }).then((data) => {
             //console.log(data)
-            let val = data.organic_results[0,4].publication_info
+            let val = data.organic_results[0].publication_info
             // console.log(val)
             setUser(val)
             })
