@@ -40,7 +40,6 @@ class App extends Component {
               <Route path="/home" name="Home" element={<ProtectedRoute> <DefaultLayout /> </ProtectedRoute>} />
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
               <Route path="/updateprofile" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
-              <Route path="/" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
               <Route exact path="/admin_dashboard" name="Admin Page" element={<AdminDashboard />} />
             </Routes>
