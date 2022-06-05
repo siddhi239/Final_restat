@@ -13,9 +13,7 @@ import { addDoc, collection, doc, getDocs, updateDoc, runTransaction, setDoc } f
 
 
 const Updateprofile = () => {
-    const [users, setUsers] = useState([
-
-    ]);
+    const [users, setUsers] = useState([]);
 
     const [newAffiliation, setNewAffiliation] = useState("")
     const [newAOI, setNewAOI] = useState("")

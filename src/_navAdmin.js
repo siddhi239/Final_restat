@@ -19,11 +19,11 @@ import {
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
-const _nav = [
+const _navAdmin = [
   {
     component: CNavItem,
-    name: 'Dashboard',
-    to: '/dashboard',
+    name: 'Admin Dashboard',
+    to: '/admin_dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
     badge: {
       color: 'info',
@@ -31,39 +31,30 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'My Profile',
-    to: '/myprofile',
-    icon: <CIcon icon={cilMoodGood} customClassName="nav-icon" />,
+    name: 'All Users',
+    to: '/allUsers',
+    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
     badge: {
       color: 'info',
     },
   },
-  {
-    component: CNavItem,
-    name: 'My Library',
-    to: '/mylibrary',
-    icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-    },
-  },
-  // {
-  //   component: CNavItem,
-  //   name: 'Settings',
-  //   to: '/dashboard',
-  //   icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-  //   badge: {
-  //     color: 'info',
-  //   },
-  // },
+//   {
+//     component: CNavItem,
+//     name: 'Settings',
+//     //to: ,
+//     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+//     badge: {
+//       color: 'info',
+//     },
+//   },
   {
     component: CNavItem,
     name: 'Log Out',
-    to: '/logout',
+    to: '/login',
     icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
     badge: {
       color: 'info',
     },
   },
 ]
-export default _nav
+export default _navAdmin

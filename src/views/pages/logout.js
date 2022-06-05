@@ -10,19 +10,17 @@ const Logout = () => {
     const navigate = useNavigate();
     const handleLogout = async () => {
         try {
-        await logOut();
-        //navigate("/");
+        await logOut(user);
+        navigate("/");
         } catch (error) {
         console.log(error.message);
         }
      };
 
     return (
-        <div>
-        <h2><Link >Logout??</Link></h2>
-        
-        </div>
-    
+
+       { handleLogout }
+
     );
 }
 

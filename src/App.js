@@ -28,6 +28,7 @@ const Mylibrary = React.lazy(() => import('./views/dashboard/mylibrary'))
 const Newfile = React.lazy(() => import('./views/dashboard/newfile'))
 const Updateprofile = React.lazy(() => import('./views/dashboard/updateprofile'))
 const AdminDashboard = React.lazy(() => import('./admin/admin_dashboard'))
+const AllUsers = React.lazy(() => import('./admin/allUsers'))
 
 class App extends Component {
   render() {
@@ -42,7 +43,8 @@ class App extends Component {
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
               <Route path="/updateprofile" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
-              <Route exact path="/admin_dashboard" name="Admin Page" element={<AdminDashboard />} />
+              <Route exact path="/admin_dashboard" name="Admin Page" element={<ProtectedRoute><AdminDashboard /> </ProtectedRoute>} />
+              <Route exact path="/allUsers" name="Admin Page" element={<ProtectedRoute><AllUsers /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

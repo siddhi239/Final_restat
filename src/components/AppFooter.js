@@ -5,7 +5,7 @@ const AppFooter = () => {
   return (
     <CFooter>
       <div>
-        <span className="ms-1">&copy;Restat</span>
+        <span className="ms-1">Restat</span>
       </div>
     </CFooter>
   )

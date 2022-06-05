@@ -26,6 +26,7 @@ const Login = () => {
     setError("");
     try {
       if(email === "admin@gmail.com" && password === "admin123"){
+        await logIn(email, password);
         navigate("/admin_dashboard")
       }else
       {
