@@ -7,6 +7,8 @@ import { CreateUserDoc } from "../../../context/createUserDoc"
 import { firestore } from 'src/firebase';
 import { addDoc, collection, getDocs } from "firebase/firestore"
 import './register.css'
+import CIcon from '@coreui/icons-react'
+import { cilNewspaper } from '@coreui/icons'
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +40,12 @@ const Signup = () => {
   return (
     <>
       <div className="p-4 box">
-        <h2 className="mb-3">Firebase Auth Signup</h2>
+      <div style={{display:'inline-flex'}}>
+        
+      <CIcon style={{textAlign: 'left', padding:'2px',height: '50px', width: '50px'}} icon={cilNewspaper} customClassName="nav-icon" />
+      &nbsp;&nbsp;
+        <h2 className="mb-3">Restat Register</h2>
+        </div>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">

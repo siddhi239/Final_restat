@@ -82,13 +82,11 @@ const Mylibrary= () =>{
             .catch(err => {
                 console.log(err)
             })
-            .finally(() => {
-                setLoading(false);
-              });
+            // http://localhost:3000/
     }
 
     useEffect(() => {
-        setLoading(true);
+        //setLoading(true);
         fetchData()
     })
 
