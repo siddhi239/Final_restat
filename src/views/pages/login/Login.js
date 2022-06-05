@@ -50,12 +50,12 @@ const Login = () => {
 
   return (
     <>
-      <div className="p-4 box" >
+      <div className="p-4 box" width="50%">
         <div style={{display:'inline-flex'}}>
-        
+        &nbsp;&nbsp; 
       <CIcon style={{textAlign: 'left', padding:'2px',height: '50px', width: '50px'}} icon={cilNewspaper} customClassName="nav-icon" />
-      &nbsp;&nbsp;
-        <h2 className="mb-3">Restat</h2>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+        <h2 className="mb-3"> Restat Login &nbsp;&nbsp; &nbsp;&nbsp;</h2>
         </div>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
@@ -90,9 +90,6 @@ const Login = () => {
           />
         </div>
       </div>
-      {/* <div className="p-4 box mt-3 text-center">
-         <Button onClick={sendPasswordReset}>Forgot Password</Button>
-      </div> */}
       <div className="p-4 box mt-3 text-center">
         Don&apos;t have an account? <Link to="/register">Sign up</Link>
       </div>

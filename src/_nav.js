@@ -57,8 +57,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Sign Out',
-    to: '/login',
+    name: 'Log Out',
+    to: '/logout',
     icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
     badge: {
       color: 'info',

@@ -20,6 +20,7 @@ const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 const Login = React.lazy(() => import('./views/pages/login/Login'))
 //const Login = React.lazy(() => import('./views/pages/register/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
+const Logout = React.lazy(() => import('./views/pages/logout'))
 // const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 // const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const Myprofile = React.lazy(() => import('./views/dashboard/myprofile'))
@@ -40,7 +41,6 @@ class App extends Component {
               <Route path="/home" name="Home" element={<ProtectedRoute> <DefaultLayout /> </ProtectedRoute>} />
               <Route path="/myprofile" name="My Profile" element={<ProtectedRoute> <Myprofile /> </ProtectedRoute>} />
               <Route path="/updateprofile" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
-              <Route path="/" name="Update Profile" element={<ProtectedRoute> <Updateprofile /> </ProtectedRoute>} />
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
               <Route exact path="/admin_dashboard" name="Admin Page" element={<AdminDashboard />} />
             </Routes>
