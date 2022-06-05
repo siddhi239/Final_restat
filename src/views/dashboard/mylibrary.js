@@ -13,9 +13,6 @@ import CIcon from '@coreui/icons-react'
 import './mysearch.css';
 import { cilMagnifyingGlass } from '@coreui/icons';
 
-const userCardTemplate = document.querySelector("[data-user-template]")
-const userCardContainer = document.querySelector("[data-user-cards-container]")
-const searchInput = document.querySelector("[data-search]")
 
 const Mylibrary= () =>{
     const [user, setUser] = useState([])
@@ -26,7 +23,7 @@ const Mylibrary= () =>{
     
     const params = {
         engine: "google_scholar",
-        q: "IOT",
+        q: "Nikhita Mangaonkar",
         hl: "en"
     };
     const url =`https://serpapi.com/search.json?engine=google_scholar&q=${params.q}&hl=${params.hl}&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
@@ -51,22 +48,15 @@ const Mylibrary= () =>{
             }).then(data => {
             
             // data = data.organic_results[0]
-            var userData = data;
-            var newData = userData.organic_results[0]
+            
+            // var userData = data;
+            // var newData = userData.organic_results[0]
+
             // var newResource = userData.organic_results[0].resources[0]
             // console.log(newData)
-            const arr = Array.from(newData);
-            u = arr.map(u => {
-                
-                const card = userCardTemplate.content.cloneNode(true).children[0]  
-                const header = card.querySelector("[data-header]")
-                const body = card.querySelector("[data-body]")
-                header.textContent = u.title
-                body.textContent= u.snippet
-                userCardContainer.append(card)
-                // console.log(user)
-                return { title: u.title, snippet: u.snippet, element: card }
-            })
+            
+            // const arr = Array.from(newData);
+          
 
             //console.log(data)
             

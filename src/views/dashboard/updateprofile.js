@@ -78,6 +78,7 @@ const Updateprofile = () => {
                                                 setNewAffiliation(e.target.value)
                                             }} 
                                         />
+                                    
                                             <Form.Text className="text-muted">
                                                 E.g., Professor of Physics, Princeton University
                                             </Form.Text>
