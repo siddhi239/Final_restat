@@ -25,7 +25,8 @@ const FetchData = () => {
         return response.json();
             
         }).then((data) => {
-            console.log(data.profiles[0].affiliations);
+            console.log(data.profiles[0].name);
+           
         })
         .catch(err => {
             console.log(err)
@@ -45,8 +46,6 @@ const FetchData = () => {
                     <AppHeader />
                     <h2>DF Page</h2>
                     <button onClick={ fetchData }>Fetch data</button>
-                    
-                   
 
                     <AppFooter />
                 </div>  

@@ -17,9 +17,11 @@ const Myprofile = () => {
     var count = 0;
     const [users, setUsers] = useState([]);
     
-
-    const [newAffiliation, setNewAffiliation] = useState("")
-    const [newAOI, setNewAOI] = useState("")
+    const [emailstat, setEmailStat] = useState("")
+    const [authorid, setAuthorID] = useState("")
+    const [citiedby, setCitedBy] = useState("")
+    const [newAffiliation, setNewAffiliation] = useState({})
+    const [newAOI, setNewAOI] = useState([])
 
     const { user } = useUserAuth();
     const id = user.uid;
@@ -31,7 +33,7 @@ const Myprofile = () => {
     const usersCollectionRef = collection(firestore, "myprofile")
     // const userDoc = doc(firestore, "myprofile", id);
     // const docSnap = getDoc(userDoc);
-    
+    const verify="Verified email at spit.ac.in"
 
     // const checkDoc = async () => {
         
@@ -42,18 +44,18 @@ const Myprofile = () => {
 
     const createMyProfile = async () => {
         
-
+        fetchData();
             await setDoc(doc(firestore, "myprofile", id), 
             {   Name: n, 
-                Affiliation: " ", 
+                Affiliation: newAffiliation, 
                 Email: e, 
-                EmailStatus: " ",
-                AOI: " ",
-                AuthorID: " ",
-                CitiedBy: 0,
+                EmailStatus: emailstat,
+                AOI: newAOI,
+                AuthorID: authorid,
+                CitiedBy: citiedby,
                 photo: pic
             })
-           fetchData();
+           
        
         }
 
@@ -67,7 +69,30 @@ const Myprofile = () => {
               return response.json();
                   
               }).then((data) => {
-                  console.log(data.profiles[0].affiliations);
+                //   console.log(data.profiles[0].affiliations);
+                //   setUsers(data.profiles);
+                // const arrlen = data.profiles.length
+                const xyz=[data.profiles];
+           
+                // console.log(xyz.length);
+                const lenarr= xyz.length;
+                // console.log(arrlen);
+                for(var i=0; i<= lenarr; i++){
+                    if(data.profiles[i].email === verify){
+                        setNewAffiliation(data.profiles[i].affiliations);
+                        setEmailStat(data.profiles[i].email);
+                        setNewAOI(data.profiles[i].interests);
+                        setAuthorID(data.profiles[i].author_id);
+                        setCitedBy(data.profiles[i].cited_by);
+                    }
+                    else{
+                        console.log("not spit account!!");
+                    }
+                }
+               
+
+                  
+
               })
               .catch(err => {
                   console.log(err)
@@ -94,7 +119,8 @@ const Myprofile = () => {
                 <AppSidebar />
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeader />
-                    {users.map((u) => {
+                    {
+                    users.map((u) => {
                             if(user.uid === u.id){
                                 return(
                                     <div key={ u.id } className="p-4 box">
@@ -117,17 +143,22 @@ const Myprofile = () => {
                                             <Form.Control type="email" value={ u.Email } disabled />
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3" controlId="formAreaofInterest">
+                                       {/* {
+                                       newAOI.map((aoi,index) =>{
+                                           
+                                         <Form.Group key={index} className="mb-3" controlId="formAreaofInterest">
                                             <Form.Label>Area of Interest</Form.Label>
-                                            <Form.Control type="text" value = { u.AOI } disabled />
+                                            <Form.Control type="text" value = { u.aoi.title } disabled />
                                         </Form.Group>
+                                        }
+                                        )} */}
 
                                         <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
                                             Update
                                         </Button>
-                                        <Button variant="primary" type="submit" onClick={() => navigate("/dataFetch")}>
+                                        {/* <Button variant="primary" type="submit" onClick={() => navigate("/dataFetch")}>
                                             Fetch Data
-                                        </Button>
+                                        </Button> */}
 
                                     </Form>
                                 </div>
@@ -164,10 +195,10 @@ const Myprofile = () => {
                                             <Form.Control type="email" value={ u.Email } disabled />
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3" controlId="formAreaofInterest">
+                                        {/* <Form.Group className="mb-3" controlId="formAreaofInterest">
                                             <Form.Label>Area of Interest</Form.Label>
                                             <Form.Control type="text" value = { u.AOI } disabled />
-                                        </Form.Group>
+                                        </Form.Group> */}
 
                                         <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
                                             Update
