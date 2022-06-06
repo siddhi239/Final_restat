@@ -4,18 +4,28 @@ import { NavLink } from 'react-router-dom'
 import { useNavigate } from "react-router";
 import { cilMagnifyingGlass } from '@coreui/icons';
 import CIcon from '@coreui/icons-react'
-import { useSelector, useDispatch } from 'react-redux'
 import { useUserAuth } from "../../context/UserAuthContext"
 import './mysearch.css'
+import {
+  CContainer,
+  CHeader,
+  CHeaderBrand,
+  CHeaderDivider,
+  CHeaderNav,
+  CHeaderToggler,
+  CDropdownToggle,
+  CDropdownMenu,
+  CDropdownItem,
+  CNavLink,
+  CNavItem,
+} from '@coreui/react'
 
 
 const Mylibrary= () =>{
     const [user, setUser] = useState([])
-    const [pub_sum, setPubsum] = useState([])
     const [cite, setCite] = useState([])
     const [resr, setResr] = useState([])
     const [loading, setLoading] = useState(false);
-    const [count, setCount] = useState(0);
     const [s, setS] = useState("")
     // const { usr } = useUserAuth();
     // const photoURL = usr.photoURL;
@@ -74,6 +84,21 @@ return(
             // <link rel="stylesheet" href="mysearch.css">
             <div className="p-4 box" >
               <h2 className="mb-3" style={{padding:'10px'}}><b>Library</b></h2>
+
+              {/* <CChart
+                type="bar"
+                data={{
+                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                  datasets: [
+                    {
+                      label: 'GitHub Commits',
+                      backgroundColor: '#f87979',
+                      data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+                    },
+                  ],
+                }}
+                labels="months"
+              /> */}
               <div style={{padding:'10px'}}>
              
    

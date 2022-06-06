@@ -124,6 +124,7 @@ const Dashboard = () => {
                   <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." onChange={(e) => {setS(e.target.value)}} aria-label="Search" />
                   <button className="search-button" type="submit" id="submit" name="search-go" onClick={fetchData} >                      
                     <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" style={{ height: '25px', widht: '25px' }}/> 
+                    
                   </button>
                   <h3>{s}</h3>
                 </div>
