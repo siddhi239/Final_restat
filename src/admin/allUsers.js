@@ -6,9 +6,6 @@ import { useUserAuth } from "src/context/UserAuthContext";
 import { firestore } from 'src/firebase';
 import { addDoc, collection, doc, getDocs, updateDoc, runTransaction, setDoc } from "firebase/firestore"
 
-
-
-
 const AllUsers = () => {
 
     const { user } = useUserAuth();
@@ -30,43 +27,35 @@ const AllUsers = () => {
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeader />
                     <h2>Admin Page</h2>
-                    {users.map((u) =>{
-                        return(
-                            <div key={ u.id }>
-                                <h2>{u.Name}</h2>
-                            </div>
-                        );
-
-                    })}
+                    
+                    
                     <Table striped bordered hover>
-                      <thead>
+                      <thead  variant="dark">
                         <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
+                          <th>Sr. No</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Affiliation</th>
+                          <th>Area of Interest</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          {users.map((u, index) => (
+                          <tr key={index}>
+                          <td scope='row'>{index + 1}</td>
+                          <td>{u.Name}</td>
+                          <td>{u.Email}</td>
+                          <td>{u.Affiliation}</td>
+                          <td>{u.AOI}</td>
+                          
                         </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td colSpan={2}>Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+
+                        ))}
+                        
                       </tbody>
                     </Table>
+
 
                     <AppFooter />
                 </div>  
