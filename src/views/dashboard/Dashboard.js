@@ -1,4 +1,4 @@
-import React from 'react'
+
 import React, { Component, useState, useEffect } from 'react';
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { cilMagnifyingGlass } from '@coreui/icons';
