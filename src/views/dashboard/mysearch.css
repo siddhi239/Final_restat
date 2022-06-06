@@ -1,44 +1,68 @@
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: .25rem;
-  }
-  
-  input {
-    font-size: 1rem;
-  }
-  
-  .usercards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: .25rem;
-    margin-top: 1rem;
-  }
-  
-  .card {
-    border: 1px solid black;
-    background-color: white;
-    padding: .5rem;
-  }
-  
-  .card > .header {
-    margin-bottom: .25rem;
-  }
-  
-  .card > .body {
-    font-size: .8rem;
-    color: #777;
-  }
-  
-  .hide {
-    display: none;
-  }
-.searchWrapper {
-    position: relative;
+.App {
+  font-family: sans-serif;
+  text-align: center;
 }
-.searchWrapper::after {
-    content: '🔍';
-    position: absolute;
-    top: 7px;
-    right: 15px;
+
+.col-md-4 {
+  margin-bottom: 30px;
+}
+
+
+.btn {
+  border-radius: 25px;
+}
+
+footer p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+footer p a,
+footer p a:hover {
+  color: rgb(99, 204, 131);
+}
+
+/* @media (min-width: 500px) {
+  .container {
+    max-width: 500px;
+  }
+} */
+#search{
+  width:1145px;
+  height: 42px;
+}
+#same-line{
+  display: inline-block; 
+
+}
+.form-outline,input{
+  display: inline-block !important;
+}
+.search-button{
+  margin: 2px;
+  padding: 6px;
+  color: white;
+
+  font-size: medium;
+  font-weight: 530;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  /* border: rgba(4, 52, 73, 0.815); */
+  border-radius: 10px;
+  height: 42px;
+  width: 42px;
+  background: rgba(0, 11, 90, 0.89);
+}
+.next-button{
+  margin-left:1150px;
+  padding: 5px;
+  color:rgba(4, 52, 73, 0.815);
+  font-size: medium;
+  font-weight: 530;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border: none;
+  border-radius: 5px;
+  background: none;
+}
+.api-data{
+  display: flex;
+  justify-content: left;
 }

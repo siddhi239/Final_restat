@@ -122,7 +122,7 @@ const Dashboard = () => {
               <div style={{padding:'10px'}}>
                 <div className="form-outline" id="same-line">
                   <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." onChange={(e) => {setS(e.target.value)}} aria-label="Search" />
-                  <button className="search-button" type="submit" id="submit" name="search-go" onClick={fetchData}>                      
+                  <button className="search-button" type="submit" id="submit" name="search-go" onClick={fetchData} >                      
                     <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" style={{ height: '25px', widht: '25px' }}/> 
                   </button>
                   <h3>{s}</h3>
@@ -133,10 +133,10 @@ const Dashboard = () => {
                 {user.map((item, index) =>
 
                     <div key={index}>
-                    <p > 
+                    <p style={{padding:'10px'}}> 
                     <a href= {item.link}> <h5>{item.title}</h5></a>
                      <h6>{item.publication_info.summary}</h6>
-                     {item.snippet}<br/>
+                     <h7>{item.snippet}</h7><br/>
                      
                      </p>
                 
