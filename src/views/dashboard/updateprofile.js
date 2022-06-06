@@ -25,6 +25,11 @@ const Updateprofile = () => {
     const usersCollectionRef = collection(firestore, "myprofile")
     let navigate = useNavigate();
     //const usersCollectionRef = doc(firestore, "myprofile", newAffiliation, newAOI);
+
+    // const onInputChange = e => {
+    //     setNewAffiliation({...newAffiliation,[e.target.]:})
+    //     console.log(newAffiliation)
+    // }
     
 
     useEffect(() => {
@@ -47,6 +52,8 @@ const Updateprofile = () => {
           
           toast.success('Profile Updated Sucessfully')
         }
+
+
 
 
     return (
@@ -74,9 +81,10 @@ const Updateprofile = () => {
                                         <Form.Group className="mb-3" controlId="formAffiliation">
                                             <Form.Label>Affiliation</Form.Label>
                                             <Form.Control type="text" 
-                                             onChange={(e) => {
+                                              onChange={(e) => {
                                                 setNewAffiliation(e.target.value)
                                             }} 
+                                            
                                         />
                                     
                                             <Form.Text className="text-muted">
