@@ -25,6 +25,7 @@ const Myprofile = () => {
     const id = user.uid;
     const n = user.displayName;
     const e = user.email;
+    const pic = user.photoURL
     let navigate = useNavigate();
     //const docSnap = DocumentSnapshot<>
     const usersCollectionRef = collection(firestore, "myprofile")
@@ -46,11 +47,36 @@ const Myprofile = () => {
             {   Name: n, 
                 Affiliation: " ", 
                 Email: e, 
-                AOI: " "
+                EmailStatus: " ",
+                AOI: " ",
+                AuthorID: " ",
+                CitiedBy: 0,
+                photo: pic
             })
-            
-        //  }
+           fetchData();
+       
         }
+
+        const q = "Nikhita Mangaonkar"
+
+        const fetchData = () =>{
+          const url = `https://serpapi.com/search.json?engine=google_scholar_profiles&mauthors=${q}&hl=en&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
+          fetch(url)
+              .then(response => {
+              // console.log(res.data.organic_results[0])
+              return response.json();
+                  
+              }).then((data) => {
+                  console.log(data.profiles[0].affiliations);
+              })
+              .catch(err => {
+                  console.log(err)
+              })
+              // .finally(() => {
+              //     setLoading(false);
+              //   });
+      }  
+    
 
 
     useEffect(() => {
@@ -99,6 +125,9 @@ const Myprofile = () => {
                                         <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
                                             Update
                                         </Button>
+                                        <Button variant="primary" type="submit" onClick={() => navigate("/dataFetch")}>
+                                            Fetch Data
+                                        </Button>
 
                                     </Form>
                                 </div>
@@ -112,7 +141,8 @@ const Myprofile = () => {
                     }
                     {users.map((u) => {
                             if(count === users.length){
-                                createMyProfile();
+                               createMyProfile();
+                               //fetchData();
                                 return(
                                     <div key={ u.id } className="p-4 box">
                                 {/* <h2 className="mb-3"> { u.Name }</h2> */}
@@ -141,6 +171,9 @@ const Myprofile = () => {
 
                                         <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
                                             Update
+                                        </Button>
+                                        <Button variant="primary" type="submit" onClick={() => navigate("/fetchData")}>
+                                            Fetch Data
                                         </Button>
 
                                     </Form>

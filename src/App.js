@@ -30,6 +30,7 @@ const Newfile = React.lazy(() => import('./views/dashboard/newfile'))
 const Updateprofile = React.lazy(() => import('./views/dashboard/updateprofile'))
 const AdminDashboard = React.lazy(() => import('./admin/admin_dashboard'))
 const AllUsers = React.lazy(() => import('./admin/allUsers'))
+const FetchData = React.lazy(() => import('./views/dashboard/dataFetch'))
 
 class App extends Component {
   render() {
@@ -47,6 +48,7 @@ class App extends Component {
               <Route path="/mylibrary" name="My Library" element={<ProtectedRoute> <Mylibrary /> </ProtectedRoute>} />
               <Route exact path="/admin_dashboard" name="Admin Page" element={<ProtectedRoute><AdminDashboard /> </ProtectedRoute>} />
               <Route exact path="/allUsers" name="Admin Page" element={<ProtectedRoute><AllUsers /> </ProtectedRoute>} />
+              <Route exact path="/fetchData" name="Fetch Data" element={<ProtectedRoute><FetchData /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

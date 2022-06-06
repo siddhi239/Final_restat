@@ -22,13 +22,14 @@ import {
 
 
 const Mylibrary= () =>{
+  
     const [user, setUser] = useState([])
     const [cite, setCite] = useState([])
     const [resr, setResr] = useState([])
     const [loading, setLoading] = useState(false);
     const [s, setS] = useState("")
-    // const { usr } = useUserAuth();
-    // const photoURL = usr.photoURL;
+    
+    
     const fetchData = () => {
     
       const url = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&num=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
@@ -103,9 +104,7 @@ return(
              
    
           {/* <div className="p-4 box mt-3 text-center">
-              <img style={{borderRadius: '50%', height: '40px'}} src={ photoURL } referrerPolicy="no-referrer" title= {user.displayName}
-                  
-              />
+              <img style={{borderRadius: '50%', height: '40px'}} src={ user1.photoURL } referrerPolicy="no-referrer" />
           </div> */}
           {/* <div className="d-grid gap-2">
             <Button variant="primary" onClick={handleLogout}>
