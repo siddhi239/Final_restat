@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from "react-bootstrap";
 import DefaultLayout from 'src/layout/DefaultLayout';
-import { useUserAuth } from "src/context/UserAuthContext";
+import { useUserAuth } from '../../context/UserAuthContext'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from "react-router-dom";
