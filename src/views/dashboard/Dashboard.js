@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 8faf5277644cdbb64007a4332d02ef57b636dce7
 import React, { Component, useState, useEffect } from 'react';
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { cilMagnifyingGlass } from '@coreui/icons';
