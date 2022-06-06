@@ -7,35 +7,6 @@
     margin-bottom: 30px;
   }
   
-  .card {
-    padding: 30px;
-    border: solid 1px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-  }
-  .card:hover {
-    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
-  }
-  .card-title {
-    margin-top: 20px;
-  }
-  .card-text {
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
-  }
-  .card-text .fa {
-    font-size: 26px;
-  }
-  .avatar {
-    width: 140px;
-    margin: auto;
-  }
-  .avatar img {
-    border: solid 6px transparent;
-    border-radius: 50%;
-  }
-  .card:hover .avatar img {
-    border-color: rgb(99, 204, 131);
-  }
   
   .btn {
     border-radius: 25px;
@@ -50,8 +21,48 @@
     color: rgb(99, 204, 131);
   }
   
-  @media (min-width: 1200px) {
+  /* @media (min-width: 500px) {
     .container {
-      max-width: 1040px;
+      max-width: 500px;
     }
+  } */
+  #search{
+    width:1145px;
+    height: 42px;
+  }
+  #same-line{
+    display: inline-block; 
+
+  }
+  .form-outline,input{
+    display: inline-block !important;
+  }
+  .search-button{
+    margin: 2px;
+    padding: 6px;
+    color: white;
+
+    font-size: medium;
+    font-weight: 530;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    /* border: rgba(4, 52, 73, 0.815); */
+    border-radius: 10px;
+    height: 42px;
+    width: 42px;
+    background: rgba(0, 11, 90, 0.89);
+  }
+  .next-button{
+    margin-left:1150px;
+    padding: 5px;
+    color:rgba(4, 52, 73, 0.815);
+    font-size: medium;
+    font-weight: 530;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border: none;
+    border-radius: 5px;
+    background: none;
+  }
+  .api-data{
+    display: flex;
+    justify-content: left;
   }
