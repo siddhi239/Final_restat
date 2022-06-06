@@ -19,32 +19,38 @@ import {
   CNavLink,
   CNavItem,
 } from '@coreui/react'
+import { firestore } from 'src/firebase';
+import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "firebase/firestore"
 
 
 const Mylibrary= () =>{
   
+    //const [users, setUsers] = useState([])  
     const [user, setUser] = useState([])
     const [cite, setCite] = useState([])
     const [resr, setResr] = useState([])
     const [loading, setLoading] = useState(false);
     const [s, setS] = useState("")
-    
-    
-    const fetchData = () => {
-    
-      const url = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&num=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
+    //const usersCollectionRef = collection(firestore, "myprofile")
+    // const { usr } = useUserAuth();
+    // const id = usr.uid
+    // console.log(id)
+    //const aID = " ";
+
   
-      const page=()=>{
-        const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
-      }
+    
+    const fetchData = (  ) => {
+    
+      const url = `https://serpapi.com/search.json?engine=google_scholar_author&author_id=HIjPgboAAAAJ&hl=en&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
+  
       fetch(url)
         .then(response => {
           return response.json();
   
         }).then(data => {
-           setUser(data.organic_results);
+           setUser(data.articles);
           // setCite(data.organic_results.inline_links.cited_by);
-          setResr(data.organic_results.resources[0]);
+          //setResr(data.organic_results.resources[0]);
         })
         .catch(err => {
            console.log(err)
@@ -52,7 +58,7 @@ const Mylibrary= () =>{
     }
   
   
-    const fetchData2 = () => {
+    const fetchData2 = (  ) => {
       const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
       
       fetch(url2)
@@ -68,10 +74,11 @@ const Mylibrary= () =>{
            console.log(err)
         })
     }
-    // useEffect(() => {
-    //   setLoading(true);
-    //   fetchData()
-    // })
+
+    useEffect(() => {
+      //setLoading(true);
+      fetchData()
+    })
   
    
 
@@ -82,7 +89,6 @@ return(
         <div className="wrapper d-flex flex-column min-vh-100 bg-light">
           <AppHeader />
           {
-            // <link rel="stylesheet" href="mysearch.css">
             <div className="p-4 box" >
               <h2 className="mb-3" style={{padding:'10px'}}><b>Library</b></h2>
 
@@ -106,12 +112,7 @@ return(
           {/* <div className="p-4 box mt-3 text-center">
               <img style={{borderRadius: '50%', height: '40px'}} src={ user1.photoURL } referrerPolicy="no-referrer" />
           </div> */}
-          {/* <div className="d-grid gap-2">
-            <Button variant="primary" onClick={handleLogout}>
-              Log out
-            </Button>
-          </div> */}
-            {/* <CNavLink href="/login">Sign in/ Register</CNavLink> */}
+          
            
                 <div className="form-outline" id="same-line">
                   <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." onChange={(e) => {setS(e.target.value)}} aria-label="Search" />
@@ -121,7 +122,7 @@ return(
                   <h3>{s}</h3>
                 </div>
               </div>
-            <div>
+            {/* <div>
               <div style={{padding:'10px'}}>
                 {user.map((item, index) =>
 
@@ -154,7 +155,20 @@ return(
                     <p>{i.cites_id}</p>
                     </div>
                     )}
-                </div>
+                </div> */}
+
+                {/* <div>
+                  {users.map((u) => {
+                    if(usr.uid){
+                      aID = u.AuthorID
+                      (
+                        <div>{aID}</div>
+                      )
+                      
+                      //fetchData(aID)
+                    }
+                  })}
+                </div> */}
                   
                 <button className="next-button" type="submit" id="submit" name="next" onClick={fetchData2}>Next...</button>
             </div>

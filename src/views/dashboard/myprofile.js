@@ -34,6 +34,8 @@ const Myprofile = () => {
     // const userDoc = doc(firestore, "myprofile", id);
     // const docSnap = getDoc(userDoc);
     const verify="Verified email at spit.ac.in"
+    var num = 0
+    var lenarr = 0
 
     // const checkDoc = async () => {
         
@@ -43,8 +45,11 @@ const Myprofile = () => {
     // }
 
     const createMyProfile = async () => {
+
+        
         
         fetchData();
+        
             await setDoc(doc(firestore, "myprofile", id), 
             {   Name: n, 
                 Affiliation: newAffiliation, 
@@ -59,25 +64,22 @@ const Myprofile = () => {
        
         }
 
-        const q = "Nikhita Mangaonkar"
+        const q = "Pallavi Thakur"
 
         const fetchData = () =>{
           const url = `https://serpapi.com/search.json?engine=google_scholar_profiles&mauthors=${q}&hl=en&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
           fetch(url)
               .then(response => {
-              // console.log(res.data.organic_results[0])
+              
               return response.json();
                   
               }).then((data) => {
-                //   console.log(data.profiles[0].affiliations);
-                //   setUsers(data.profiles);
-                // const arrlen = data.profiles.length
-                const xyz=[data.profiles];
-           
-                // console.log(xyz.length);
-                const lenarr= xyz.length;
-                // console.log(arrlen);
+
+                const xyz=data.profiles;
+                lenarr= xyz.length;
+                //console.log(lenarr);
                 for(var i=0; i<= lenarr; i++){
+                    //console.log(data.profiles[i].email)
                     if(data.profiles[i].email === verify){
                         setNewAffiliation(data.profiles[i].affiliations);
                         setEmailStat(data.profiles[i].email);
@@ -87,11 +89,9 @@ const Myprofile = () => {
                     }
                     else{
                         console.log("not spit account!!");
+                        //num = num + 1
                     }
-                }
-               
-
-                  
+                }   
 
               })
               .catch(err => {
@@ -203,9 +203,9 @@ const Myprofile = () => {
                                         <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
                                             Update
                                         </Button>
-                                        <Button variant="primary" type="submit" onClick={() => navigate("/fetchData")}>
+                                        {/* <Button variant="primary" type="submit" onClick={() => navigate("/fetchData")}>
                                             Fetch Data
-                                        </Button>
+                                        </Button> */}
 
                                     </Form>
                                 </div>
