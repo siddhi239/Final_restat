@@ -66,6 +66,10 @@ const delUser = async () => {
                               <h6 className="txt">Are you sure you want to Delete this user ?</h6>
                               <button type="submit" className='clickbtn' onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
                               </div>
+                            <div style={{height: '100px', width: '10px', boxShadow: '4px', alignSelf:'center'}}>
+                              <center></center><img style={{borderRadius: '50%', height: '140px'}} src={ u.photo } referrerPolicy="no-referrer" />
+                              <h2>{u.Name}</h2>
+                              <button  type="submit" onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
                             </div>
                             
                           );
