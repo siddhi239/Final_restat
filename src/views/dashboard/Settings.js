@@ -11,23 +11,11 @@ import './settings.css'
 
 const Settings = () => {
 
-  const [users, setUsers] = useState([]);
   const { user } = useUserAuth();
   const e = user.email;
 
-  const usersCollectionRef = collection(firestore, "myprofile")
   let navigate = useNavigate();
   
-  useEffect(() => {
-    const getUsers = async () => {
-        const data = await getDocs(usersCollectionRef)
-        setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
-        // setU(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
-    }
-
-    getUsers();
-}, []);
-
 
   return (
       <div>

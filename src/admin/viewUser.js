@@ -13,9 +13,8 @@ import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "fi
 const ViewUser = () => {
 
   const [users, setUsers] = useState([]);
-  const [aoi, setAoi] = useState([]);
-  const aoiarr = [];
-
+  //const [aoi, setAoi] = useState([]);
+  
   const { id } = useParams();
 
   const { user } = useUserAuth();
@@ -29,23 +28,9 @@ const ViewUser = () => {
     const getUsers = async () => {
         const data = await getDocs(usersCollectionRef)
         setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-
-      //   {users.map((u)=>{
-      //     if(u.id === id){
-      //     setAoi(u.AOI)
-      //     }
-      //     console.log(aoi)
-      //   })
-      // }
-
     }
-
     getUsers();
 }, []);
-
-
-
-
 
   return (
       <div>
@@ -54,27 +39,13 @@ const ViewUser = () => {
                     <AppHeaderAdmin />
                     <h2>Single User Page</h2>
                     <div>
-                    {users.map((u) => {
-                      if(u.id === id){
-                        setAoi(u.AOI);
-                        <div key={u.id}>
-                          <img style={{borderRadius: '50%', height: '40px'}} src={ u.photo } referrerPolicy="no-referrer"/>
-                          <h2>{u.Name}</h2>
-                          <h2>{u.Email}</h2>
-                          <h2>{u.Affiliation}</h2>
-                          <h2>{u.CitiedBy}</h2>
-                        </div>
-                      }
-                      
-                    })
-
-                    }
-                    {aoi.map((a,index) => {
-                     <div key={index}>
-                        <h2>{a.title}</h2>
-                     </div>
-                    })}
-                    
+                      {users.map((u) => {
+                        if(u.id === id){
+                          <div key={ u.id }>
+                              <h2>{u.Name}</h2>
+                          </div>
+                        }
+                      })}
                     </div>
                     
                     <AppFooter />
