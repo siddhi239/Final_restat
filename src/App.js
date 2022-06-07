@@ -53,7 +53,7 @@ class App extends Component {
               <Route exact path="/allUsers" name="Admin Page" element={<ProtectedRoute><AllUsers /> </ProtectedRoute>} />
               <Route exact path="/viewUser/:id" name="Admin Page" element={<ProtectedRoute><ViewUser /> </ProtectedRoute>} />
               <Route exact path="/fetchData" name="Fetch Data" element={<ProtectedRoute><FetchData /> </ProtectedRoute>} />
-              <Route exact path="/settings" name="Settings" element={<ProtectedRoute><Settings /> </ProtectedRoute>} />
+              <Route exact path="/Settings" name="Settings" element={<ProtectedRoute><Settings /> </ProtectedRoute>} />
               <Route exact path="/libraryapi" name="Library API" element={<ProtectedRoute><Libraryapi /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>

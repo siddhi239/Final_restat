@@ -50,7 +50,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Settings',
-    to: '/settings',
+    to: '/Settings',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
     badge: {
       color: 'info',
