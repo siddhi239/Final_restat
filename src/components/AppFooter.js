@@ -5,7 +5,11 @@ const AppFooter = () => {
   return (
     <CFooter>
       <div>
-        <span className="ms-1">Restat</span>
+        <span className="ms-1">
+          
+          <i>About Us:</i><br/>
+          <i>ReStat</i> is Research Library Search platform for Researchers where we can view published papers and journals </span>
+          
       </div>
     </CFooter>
   )

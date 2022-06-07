@@ -90,6 +90,7 @@ const Dashboard = () => {
     const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
     
     fetch(url2)
+    
       .then(response => {
         return response.json();
 
@@ -145,7 +146,7 @@ const Dashboard = () => {
                       )}
                     </div> : null}
 
-                    
+
                      </p>
                    </div>
                  

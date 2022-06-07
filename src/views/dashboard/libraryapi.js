@@ -26,6 +26,7 @@ const Libraryapi = () => {
             // setU(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
         }
 
+
         getUsers();
     }, []);
 
@@ -39,7 +40,7 @@ const Libraryapi = () => {
             setAuthid(item.AuthorID);
         }
         console.log(user.uid);
-    console.log(authid);
+        console.log(authid);
     
       
     }
@@ -74,7 +75,7 @@ const Libraryapi = () => {
       }).then(data => {
         console.log(data);
          setPapers(data.articles);
-        //  setProfile(data.author)
+         setProfile(data.author);
         //  console.log(papers);
       })
       .catch(err => {
@@ -91,15 +92,13 @@ const Libraryapi = () => {
      <AppSidebar />
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeader />
-                    <h2>Admin Page</h2>
-                    
-                    <button onClick={Fetchpapers}>Refresh</button>
+  
                     {/* {users.map((item) =>{
 
                         if(user.uid === item.id){
                             return(
                                 <div key={item.id}>
-                                     <img style={{borderRadius: '50%', height: '40px'}} src={ item.photo } referrerPolicy="no-referrer"/>
+                                     
                                  
                                     </div>
                             );
@@ -107,18 +106,34 @@ const Libraryapi = () => {
                         }
                     }
                     )} */}
+                    <div style={{display: 'inline-block', padding:'20px'}}>
+                      
+                      <img style={{borderRadius: '50%', height: '40px', width:'40px'}} src={ user.photoURL } referrerPolicy="no-referrer"/>
 
-                        <h2>{profile.name}</h2>
-                        <h4>{profile.afilliations}</h4>
-                        <h4>{profile.email}</h4>
+                      <div  style={{padding:'20px '}}>
+                        <h4>{profile.name}</h4>
+                        <h6>{profile.affiliations}</h6>
+                        <h6>{profile.email}</h6><br/>
+                    </div>
+
                       {
-                      papers.map((item,index) =>
-                      <div key={index}>
+                        papers.map((item,index) =>
+                        <div key={index}>
                         {/* <h5>{item.title}</h5> */}
+                        <hr/>
                         <a href= {item.link}> <h5>{item.title}</h5></a>
+                        <h6>{item.authors}</h6>
+                        <h6>{item.publication}</h6>
+                        
+                        
                       </div>
                       )
                     }
+
+
+
+
+                    </div>
                     
                     <AppFooter />
                 </div>  
