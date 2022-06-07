@@ -78,7 +78,7 @@ const Libraryapi = () => {
       .finally(() => {
         setLoading(false);
       });
-
+    }
       const countOfPapers = async () => {
 
         await setDoc(doc(firestore, "Total Paper per User", uid),
@@ -100,7 +100,7 @@ const Libraryapi = () => {
           })
       }
 
-  }
+
     return (
       <div>
      <AppSidebar />
