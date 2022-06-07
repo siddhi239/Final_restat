@@ -86,4 +86,4 @@ const delUser = async () => {
   );
 }
 
-export default ViewUser
+export default ViewUser;

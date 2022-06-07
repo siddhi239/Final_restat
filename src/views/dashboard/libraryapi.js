@@ -87,6 +87,19 @@ const Libraryapi = () => {
             Count: totalPapers
           })
       }
+
+      const graphData = async () => {
+
+        await setDoc(doc(firestore, "Graph Data", uid),
+          {
+            2018: citedBy[0].citations,
+            2019: citedBy[1].citations,
+            2020: citedBy[2].citations,
+            2021: citedBy[3].citations,
+            2022: citedBy[4].citations,
+          })
+      }
+
   }
     return (
       <div>
@@ -109,6 +122,7 @@ const Libraryapi = () => {
                       citedBy.map((i, index) =>
                         <div key={index}>
                           <hr />
+                          <p onClick={graphData}>Graph Data</p>
                           <table>
                             <tr>
                               <thead>Year</thead>
@@ -123,8 +137,6 @@ const Libraryapi = () => {
                       )
                     }
                   </div>
-
-                          
                   {
                     papers.map((item, index) =>
                       <div key={index}>
@@ -142,12 +154,7 @@ const Libraryapi = () => {
                     )
                   }
                   <p onClick={countOfPapers}>All Papers</p>
-
-
-
-
                     </div>
-                    
                     <AppFooter />
                 </div>  
                 </div>
