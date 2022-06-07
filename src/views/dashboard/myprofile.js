@@ -74,7 +74,7 @@ const Myprofile = () => {
               return response.json();
                   
               }).then((data) => {
-
+                
                 const xyz=data.profiles;
                 lenarr= xyz.length;
                 //console.log(lenarr);
