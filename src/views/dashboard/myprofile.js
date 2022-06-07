@@ -55,7 +55,7 @@ const Myprofile = () => {
                 Affiliation: newAffiliation, 
                 Email: e, 
                 EmailStatus: emailstat,
-                AOI: newAOI,
+                AOI: " ",
                 AuthorID: authorid,
                 CitiedBy: citiedby,
                 photo: pic
@@ -142,17 +142,12 @@ const Myprofile = () => {
                                             <Form.Label>Email address</Form.Label>
                                             <Form.Control type="email" value={ u.Email } disabled />
                                         </Form.Group>
-
-                                       {/* {
-                                       newAOI.map((aoi,index) =>{
                                            
-                                         <Form.Group key={index} className="mb-3" controlId="formAreaofInterest">
+                                         <Form.Group className="mb-3" controlId="formAreaofInterest">
                                             <Form.Label>Area of Interest</Form.Label>
-                                            <Form.Control type="text" value = { u.aoi.title } disabled />
+                                            <Form.Control type="text" value = { u.AOI } disabled />
                                         </Form.Group>
-                                        }
-                                        )} */}
-
+                                       
                                         <Button variant="primary" type="submit" onClick={() => navigate("/updateprofile")}>
                                             Update
                                         </Button>
