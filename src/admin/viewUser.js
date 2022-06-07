@@ -4,26 +4,25 @@ import { AppSidebarAdmin, AppHeaderAdmin } from 'src/components/index'
 import Table from 'react-bootstrap/Table'
 import { DataGrid } from '@mui/x-data-grid';
 import { useUserAuth } from 'src/context/UserAuthContext';
+import CIcon from '@coreui/icons-react'
+import { cilPen, cilInfo, cilTrash } from '@coreui/icons'
 import { useParams, useNavigate } from 'react-router-dom';
 import { firestore } from 'src/firebase';
-import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "firebase/firestore"
+import { getAuth, deleteUser } from "firebase/auth";
+import { addDoc, collection, doc, getDocs, updateDoc, runTransaction, setDoc, deleteDoc } from "firebase/firestore"
+
 
 
 
 const ViewUser = () => {
 
   const [users, setUsers] = useState([]);
-  //const [aoi, setAoi] = useState([]);
-  
+ 
   const { id } = useParams();
-
-  const { user } = useUserAuth();
+  let navigate = useNavigate()
 
   const usersCollectionRef = collection(firestore, "myprofile")
 
-  //const docRef = doc(firestore, "myprofile", id);
-
-  
   useEffect(() => {
     const getUsers = async () => {
         const data = await getDocs(usersCollectionRef)
@@ -31,6 +30,12 @@ const ViewUser = () => {
     }
     getUsers();
 }, []);
+
+const delUser = async () => {
+    await deleteDoc(doc(firestore, "myprofile", id));
+    navigate("/allUsers");
+    
+  }
 
   return (
       <div>
@@ -41,9 +46,20 @@ const ViewUser = () => {
                     <div>
                       {users.map((u) => {
                         if(u.id === id){
-                          <div key={ u.id }>
+                          return(
+                            <div style={{height: '100px', width: '10px', boxShadow: '4px', alignSelf:'center'}}>
+                              <center></center><img style={{borderRadius: '50%', height: '140px'}} src={ u.photo } referrerPolicy="no-referrer" />
                               <h2>{u.Name}</h2>
-                          </div>
+
+
+
+
+
+                              <button  type="submit" onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
+                            </div>
+                            
+                          );
+                          
                         }
                       })}
                     </div>

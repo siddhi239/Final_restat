@@ -5,16 +5,43 @@ import { useUserAuth } from 'src/context/UserAuthContext';
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { firestore } from 'src/firebase';
 import { Link, useNavigate } from "react-router-dom";
-import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "firebase/firestore"
+import { getAuth, deleteUser } from "firebase/auth";
+import { addDoc, collection, getDocs, setDoc, doc, deleteDoc} from "firebase/firestore"
 import './settings.css'
+import { async } from '@firebase/util';
 
 
 const Settings = () => {
 
+ 
+  let navigate = useNavigate();
+
   const { user } = useUserAuth();
   const e = user.email;
+  const id = user.uid;
+  
+  const delUser = async () => {
+    await deleteDoc(doc(firestore, "myprofile", id));
+    deleteUser(user).then(() => {
+      alert('Successfully deleted user');
+      navigate("/");
+    }).catch((error) => {
+      console.log('Error deleting user:', error);
+    });
+    
+  }
 
-  let navigate = useNavigate();
+  // const delDoc = (uid) => {
+  //   firestore.collection("myprofile").doc(uid).delete()
+  //   .then(() => {
+  //     console.log("doc deleted succesfully")
+  //   }).catch((error) => {
+  //     console.log('Error deleting user:', error);
+  //   });
+
+  // }
+
+  
   
 
   return (
@@ -34,12 +61,10 @@ const Settings = () => {
                     <b><i>Account Settings</i></b>
                     <br/><br/>
                     <button className="setbutton" type="submit" id="submit" name="next" onClick={() => navigate("/logout")}>Sign Out</button><br/><br/>
-                    <button className="setbutton" type="submit" id="submit" name="next" onClick={() => navigate("/login")}>Delete Restat Account</button>
+                    <button className="setbutton" type="submit" id="submit" name="next" onClick={ delUser }>Delete Restat Account</button>
 
                     </div>
                     </div>
-                    
-                    
                     <AppFooter />
                 </div>  
       </div>

@@ -97,7 +97,7 @@ const Updateprofile = () => {
                                             <Form.Control type="email" defaultValue={ u.Email} />
                                         </Form.Group>
             
-                                        <Form.Group className="mb-3" controlId="formAreaofInterest">
+                                        {/* <Form.Group className="mb-3" controlId="formAreaofInterest">
                                             <Form.Label>Area of Interest</Form.Label>
                                             <Form.Control type="text" 
                                                 onChange={(e) => {
@@ -108,7 +108,8 @@ const Updateprofile = () => {
                                             <Form.Text className="text-muted">
                                                 E.g., general relativity, unified field theory
                                             </Form.Text>
-                                        </Form.Group>
+                                        </Form.Group> */}
+                                        
                                         <Button variant="success" type="submit" onClick={ updateprofile }>
                                             Save
                                         </Button>

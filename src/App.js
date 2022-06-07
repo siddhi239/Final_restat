@@ -32,7 +32,7 @@ const AdminDashboard = React.lazy(() => import('./admin/admin_dashboard'))
 const AllUsers = React.lazy(() => import('./admin/allUsers'))
 const ViewUser = React.lazy(() => import('./admin/viewUser'))
 const FetchData = React.lazy(() => import('./views/dashboard/dataFetch'))
-const Settings = React.lazy(() => import('./views/dashboard/settings'))
+const Settings = React.lazy(() => import('./views/dashboard/Settings'))
 const Libraryapi = React.lazy(() => import('./views/dashboard/libraryapi'))
 
 class App extends Component {
