@@ -10,7 +10,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { firestore } from 'src/firebase';
 import { getAuth, deleteUser } from "firebase/auth";
 import { addDoc, collection, doc, getDocs, updateDoc, runTransaction, setDoc, deleteDoc } from "firebase/firestore"
-
+import "./viewUser.css"
 
 
 
@@ -42,20 +42,30 @@ const delUser = async () => {
         <AppSidebarAdmin />
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeaderAdmin />
-                    <h2>Single User Page</h2>
-                    <div>
+                    <div className='mainwrap'>
                       {users.map((u) => {
                         if(u.id === id){
                           return(
-                            <div style={{height: '100px', width: '10px', boxShadow: '4px', alignSelf:'center'}}>
-                              <center></center><img style={{borderRadius: '50%', height: '140px'}} src={ u.photo } referrerPolicy="no-referrer" />
-                              <h2>{u.Name}</h2>
+                            <div className='main' >
+                              <div className='merge'>
+                              <img className='image' src={ u.photo } referrerPolicy="no-referrer" />
+                              <h4 className='n'>{u.Name}</h4>
+                              </div><hr/>
+                              <h5>Account Details</h5>
+
+                              <div className='em'>
+                              <p ><b>Email Account: </b><i style={{color:'blue'}}>{u.Email}</i><br/>
+                            
+                              <b>{u.Affiliation}</b><br/>
+                              <b>Cited By:</b> {u.CitiedBy}
+                              </p>
+                              </div>
 
 
-
-
-
-                              <button  type="submit" onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
+                              <div className="merge">
+                              <h6 className="txt">Are you sure you want to Delete this user ?</h6>
+                              <button type="submit" className='clickbtn' onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
+                              </div>
                             </div>
                             
                           );
@@ -64,8 +74,9 @@ const delUser = async () => {
                       })}
                     </div>
                     
-                    <AppFooter />
+                   
                 </div>  
+                <AppFooter />
       </div>
    
   );

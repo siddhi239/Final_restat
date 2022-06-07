@@ -6,7 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useUserAuth } from 'src/context/UserAuthContext'
 import { firestore } from 'src/firebase';
 import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot } from "firebase/firestore"
-
+import './library.css'
 const Libraryapi = () => {
 
   const { user } = useUserAuth();
@@ -85,27 +85,15 @@ const Libraryapi = () => {
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <AppHeader />
   
-                    {/* {users.map((item) =>{
-
-                        if(user.uid === item.id){
-                            return(
-                                <div key={item.id}>
-                                     
-                                 
-                                    </div>
-                            );
-                            
-                        }
-                    }
-                    )} */}
-                    <div style={{display: 'inline-block', padding:'20px'}}>
-                      
-                      <img style={{borderRadius: '50%', height: '40px', width:'40px'}} src={ user.photoURL } referrerPolicy="no-referrer"/>
-
-                      <div  style={{padding:'20px '}}>
+                    <div className="wrap" style={{padding:'20px'}}>
+                      <div className="inline">
+                      <img className='style' src={ user.photoURL } referrerPolicy="no-referrer"/>
+                      <div className='profile'>
                         <h4>{profile.name}</h4>
                         <h6>{profile.affiliations}</h6>
                         <h6>{profile.email}</h6><br/>
+
+                      </div>
                     </div>
 
                       {
@@ -116,7 +104,6 @@ const Libraryapi = () => {
                         <a href= {item.link}> <h5>{item.title}</h5></a>
                         <h6>{item.authors}</h6>
                         <h6>{item.publication}</h6>
-                        
                         
                       </div>
                       )

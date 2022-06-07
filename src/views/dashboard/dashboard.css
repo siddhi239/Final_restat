@@ -66,3 +66,6 @@
     display: flex;
     justify-content: left;
   }
+  .mainData{
+    justify-content: center;
+  }
