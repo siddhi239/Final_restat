@@ -36,9 +36,12 @@ const Mylibrary= () =>{
     // const id = usr.uid
     // console.log(id)
     //const aID = " ";
+  //   const {authuser} = useUserAuth();
+  // const photoURL = authuser.photoURL;
+  //   console.log(authuser.displayName);
+    
 
   
-    
     const fetchData = (  ) => {
     
       const url = `https://serpapi.com/search.json?engine=google_scholar_author&author_id=HIjPgboAAAAJ&hl=en&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
@@ -66,9 +69,8 @@ const Mylibrary= () =>{
           return response.json();
   
         }).then(data => {
-           setUser(data.organic_results);
-          // setCite(data.organic_results.inline_links.cited_by);
-          setResr(data.organic_results.resources[0]);
+           setUser(data.articles);
+
         })
         .catch(err => {
            console.log(err)
@@ -91,6 +93,12 @@ return(
           {
             <div className="p-4 box" >
               <h2 className="mb-3" style={{padding:'10px'}}><b>Library</b></h2>
+              {/* <div className="p-4 box mt-3 text-center">
+              <img style={{borderRadius: '50%', height: '40px'}} src={ photoURL } referrerPolicy="no-referrer" title= {authuser.displayName}
+                  
+              />
+          </div> */}
+
 
               {/* <CChart
                 type="bar"
@@ -107,11 +115,6 @@ return(
                 labels="months"
               /> */}
               <div style={{padding:'10px'}}>
-             
-   
-          {/* <div className="p-4 box mt-3 text-center">
-              <img style={{borderRadius: '50%', height: '40px'}} src={ user1.photoURL } referrerPolicy="no-referrer" />
-          </div> */}
           
            
                 <div className="form-outline" id="same-line">
@@ -122,6 +125,24 @@ return(
                   <h3>{s}</h3>
                 </div>
               </div>
+
+              <div style={{padding:'10px'}}>
+                {user.map((item, index) =>
+
+                    <div key={index}>
+                    <div style={{padding:'10px'}}> 
+                    <a href= {item.link}> <h5>{item.title}</h5></a>
+                     <h6>{item.authors}</h6>
+                     Year: {item.year}<br/>
+                     {item.publication}<br/><br/>
+                     </div>
+                
+                   </div>
+                 
+                )}
+             
+              </div>
+
             {/* <div>
               <div style={{padding:'10px'}}>
                 {user.map((item, index) =>
@@ -171,6 +192,7 @@ return(
                 </div> */}
                   
                 <button className="next-button" type="submit" id="submit" name="next" onClick={fetchData2}>Next...</button>
+                {/* <button className="next-button" type="submit" id="submit" name="next" onClick={() => navigate("/fetchapi")}>Next...</button> */}
             </div>
           }
 

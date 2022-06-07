@@ -68,11 +68,8 @@ const Dashboard = () => {
 
   const fetchData = () => {
   
-    const url = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&num=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
+    const url = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&num=20&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
 
-    const page=()=>{
-      const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
-    }
     fetch(url)
       .then(response => {
         return response.json();
@@ -80,7 +77,7 @@ const Dashboard = () => {
       }).then(data => {
          setUser(data.organic_results);
         // setCite(data.organic_results.inline_links.cited_by);
-        setResr(data.organic_results.resources[0]);
+        // setResr(data.organic_results.resources[0]);
       })
       .catch(err => {
          console.log(err)
@@ -89,7 +86,7 @@ const Dashboard = () => {
 
 
   const fetchData2 = () => {
-    const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=f27584dfd4f6b31ffcf33b293880c7b88ff0404c27db802c2ad64fe38fed5f1e`;
+    const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
     
     fetch(url2)
       .then(response => {

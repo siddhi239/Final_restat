@@ -31,6 +31,8 @@ const Updateprofile = React.lazy(() => import('./views/dashboard/updateprofile')
 const AdminDashboard = React.lazy(() => import('./admin/admin_dashboard'))
 const AllUsers = React.lazy(() => import('./admin/allUsers'))
 const FetchData = React.lazy(() => import('./views/dashboard/dataFetch'))
+const Settings = React.lazy(() => import('./views/dashboard/settings'))
+const Libraryapi = React.lazy(() => import('./views/dashboard/libraryapi'))
 
 class App extends Component {
   render() {
@@ -49,6 +51,8 @@ class App extends Component {
               <Route exact path="/admin_dashboard" name="Admin Page" element={<ProtectedRoute><AdminDashboard /> </ProtectedRoute>} />
               <Route exact path="/allUsers" name="Admin Page" element={<ProtectedRoute><AllUsers /> </ProtectedRoute>} />
               <Route exact path="/fetchData" name="Fetch Data" element={<ProtectedRoute><FetchData /> </ProtectedRoute>} />
+              <Route exact path="/settings" name="Settings" element={<ProtectedRoute><Settings /> </ProtectedRoute>} />
+              <Route exact path="/libraryapi" name="Library API" element={<ProtectedRoute><Libraryapi /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

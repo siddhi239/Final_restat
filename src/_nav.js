@@ -47,20 +47,29 @@ const _nav = [
       color: 'info',
     },
   },
-  // {
-  //   component: CNavItem,
-  //   name: 'Settings',
-  //   to: '/dashboard',
-  //   icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-  //   badge: {
-  //     color: 'info',
-  //   },
-  // },
+  {
+    component: CNavItem,
+    name: 'Settings',
+    to: '/settings',
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+    },
+  },
   {
     component: CNavItem,
     name: 'Log Out',
     to: '/logout',
     icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+    },
+  },
+  {
+    component: CNavItem,
+    name: 'Library demo',
+    to: '/libraryapi',
+    icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
     badge: {
       color: 'info',
     },
