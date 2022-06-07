@@ -9,7 +9,7 @@ const AppFooter = () => {
           
           <i>About Us:</i><br/>
           <i>ReStat</i> is Research Library Search platform for Researchers where we can view published papers and journals </span>
-          
+          <br/>
       </div>
     </CFooter>
   )

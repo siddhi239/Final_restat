@@ -96,12 +96,12 @@ const Dashboard = () => {
 
       }).then(data => {
          setUser(data.organic_results);
-        // setCite(data.organic_results.inline_links.cited_by);
+        setCite(data.organic_results.inline_links.cited_by);
         // console.log(data.organic_results.resources[0]);
         setResr(data.organic_results.resources[0]);
       })
       .catch(err => {
-         console.log("Hello errr")
+         console.log(err)
       })
   }
   // useEffect(() => {
@@ -125,27 +125,32 @@ const Dashboard = () => {
                   <button className="search-button" type="submit" id="submit" name="search-go" onClick={fetchData} >                      
                     <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" style={{ height: '25px', widht: '25px' }}/> 
                   </button>
-                  <h3>{s}</h3>
                 </div>
               </div>
 
               <div style={{padding:'10px'}}>
+              <h3 style={{padding:'10px'}}>{s}</h3>
                 {user.map((item, index) =>
                     <div key={index}>
-                    <p style={{padding:'10px'}}> 
+                    <p style={{padding:'10px'}}>
+                    <hr/> 
                     <a href= {item.link}> <h5>{item.title}</h5></a>
                      <h6>{item.publication_info.summary}</h6>
                      <h7>{item.snippet}</h7><br/>
+                     
                      {item.resources != undefined ? <div>
                       {item.resources.map((d, index) => <div key={index}>
                           <p> 
-                            {d.title}          
+                            {d.title}<br/>       
                           {d.link}
                           </p>
                         </div>
                       )}
                     </div> : null}
-
+                      
+                    {item.inline_links.cited_by != undefined ? <div>
+                      {item.inline_links.cited_by.total}
+                    </div> : null}
 
                      </p>
                    </div>
@@ -153,14 +158,6 @@ const Dashboard = () => {
                 )}
              
               </div>
-
-              
-              <div>
-              {cite.map((i,index)=> <div key={index}>
-                    <p>{i.cites_id}</p>
-                    </div>
-                    )}
-                </div>
                   
                 <button className="next-button" type="submit" id="submit" name="next" onClick={fetchData2}>Next...</button>
             </div>
