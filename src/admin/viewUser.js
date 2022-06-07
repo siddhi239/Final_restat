@@ -50,11 +50,6 @@ const delUser = async () => {
                             <div style={{height: '100px', width: '10px', boxShadow: '4px', alignSelf:'center'}}>
                               <center></center><img style={{borderRadius: '50%', height: '140px'}} src={ u.photo } referrerPolicy="no-referrer" />
                               <h2>{u.Name}</h2>
-
-
-
-
-
                               <button  type="submit" onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
                             </div>
                             

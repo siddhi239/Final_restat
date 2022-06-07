@@ -138,7 +138,7 @@ const Dashboard = () => {
                      <h6>{item.publication_info.summary}</h6>
                      <h7>{item.snippet}</h7><br/>
                      
-                     {item.resources != undefined ? <div>
+                     {item.resources !== undefined ? <div>
                       {item.resources.map((d, index) => <div key={index}>
                           <p> 
                             {d.title}<br/>       
