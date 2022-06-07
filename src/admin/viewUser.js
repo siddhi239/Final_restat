@@ -71,7 +71,7 @@ const delUser = async () => {
                               <h2>{u.Name}</h2>
                               <button  type="submit" onClick={ delUser }>Delete User<CIcon icon={cilTrash} /></button>
                             </div>
-                            
+                            </div>
                           );
                           
                         }
