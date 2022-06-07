@@ -15,6 +15,7 @@ const Libraryapi = () => {
     const [users, setUsers] = useState([]);
     const [papers, setPapers] = useState([]);
     const [authid, setAuthid] = useState(" ");
+    const [s, setS] = useState("")
     // const [u, setU] = useState(" ");
 
     useEffect(() => {
@@ -39,7 +40,9 @@ const Libraryapi = () => {
     }
 
     console.log(authid);
-      
+    const url = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&num=20&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
+
+
     // fetch(url)
       // .then(response => {
       //   return response.json();
