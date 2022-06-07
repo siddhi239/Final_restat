@@ -45,7 +45,7 @@ const Settings = () => {
                     <br/><br/><br/>
                     <b><i>Account Settings</i></b>
                     <br/><br/>
-                    <button className="setbutton" type="submit" id="submit" name="next" onClick={() => navigate("/login")}>Sign Out</button><br/><br/>
+                    <button className="setbutton" type="submit" id="submit" name="next" onClick={() => navigate("/logout")}>Sign Out</button><br/><br/>
                     <button className="setbutton" type="submit" id="submit" name="next" onClick={() => navigate("/login")}>Delete Restat Account</button>
 
                     </div>
