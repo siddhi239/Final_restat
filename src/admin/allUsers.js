@@ -4,9 +4,10 @@ import { AppSidebarAdmin } from 'src/components/index'
 import Table from 'react-bootstrap/Table'
 import { useUserAuth } from "src/context/UserAuthContext";
 import { firestore } from 'src/firebase';
+import { getAuth, deleteUser } from "firebase/auth";
 import CIcon from '@coreui/icons-react'
-import { addDoc, collection, doc, getDocs, updateDoc, runTransaction, setDoc } from "firebase/firestore"
-import { cilPen, cilInfo } from '@coreui/icons'
+import { addDoc, collection, doc, getDocs, updateDoc, runTransaction, setDoc, deleteDoc } from "firebase/firestore"
+import { cilPen, cilInfo, cilTrash } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom';
 
 const AllUsers = () => {
@@ -24,6 +25,17 @@ const AllUsers = () => {
 
         getUsers();
     }, []);
+
+    // const delUser = async (id) => {
+    //   await deleteDoc(doc(firestore, "myprofile", id));
+    //   // deleteUser(id).then(() => {
+    //   //   alert('Successfully deleted user');
+    //   //   navigate("/");
+    //   // }).catch((error) => {
+    //   //   console.log('Error deleting user:', error);
+    //   // });
+      
+    // }
 
   return (
       <div>
@@ -58,8 +70,8 @@ const AllUsers = () => {
                           <td><center>{u.CitiedBy}</center></td>
                           <td>
                             <center>
-                              <button variant="success" type="submit" onClick={() => navigate(`/viewUser/${u.id}`)} ><CIcon icon={cilPen} /></button>&nbsp;&nbsp; 
-                              <button  type="submit" ><CIcon icon={cilInfo} /></button>
+                              <button variant="success" type="submit" onClick={() => navigate(`/viewUser/${u.id}`)} ><CIcon icon={cilInfo} /></button>&nbsp;&nbsp; 
+                              {/* <button  type="submit" onClick={ delUser(u.id) }><CIcon icon={cilTrash} /></button> */}
                             </center>
                           </td>
 

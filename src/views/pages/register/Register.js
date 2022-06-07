@@ -24,12 +24,6 @@ const Signup = () => {
     setError("");
     try {
       await signUp(email, password);
-
-      // const id = signUp.uid;
-      // const n = signUp.displayName;
-      // const e = signUp.email;
-      // await addDoc(usersCollectionRef, { Name: n, Affiliation: " ", Email: e, AOI: " ", UID: id})
-
       navigate("/login");
     } catch (err) {
       setError(err.message);

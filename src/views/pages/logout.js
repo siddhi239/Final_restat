@@ -11,6 +11,7 @@ const Logout = () => {
     const handleLogout = async () => {
         try {
         await logOut(user);
+        alert("Logged out Successfully")
         navigate("/");
         } catch (error) {
         console.log(error.message);
