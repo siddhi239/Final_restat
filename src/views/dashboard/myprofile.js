@@ -64,7 +64,7 @@ const Myprofile = () => {
        
         }
 
-        const q = "Pallavi Thakur"
+        const q = "Nikhita Mangaonkar"
 
         const fetchData = () =>{
           const url = `https://serpapi.com/search.json?engine=google_scholar_profiles&mauthors=${q}&hl=en&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;

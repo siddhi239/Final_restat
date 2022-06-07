@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react'
 import {AppFooter, AppHeader } from 'src/components/index'
-import { AppSidebarAdmin } from 'src/components/index'
+import { AppSidebarAdmin, AppHeaderAdmin } from 'src/components/index'
 import Table from 'react-bootstrap/Table'
 import { DataGrid } from '@mui/x-data-grid';
 import { useUserAuth } from 'src/context/UserAuthContext';
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
       <div>
         <AppSidebarAdmin />
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-                    <AppHeader />
+                    <AppHeaderAdmin />
                     <h2>Admin Page</h2>
                     
                     

@@ -50,21 +50,9 @@ const AppHeader = () => {
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}>
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        {/* <CHeaderBrand className="mx-auto d-md-none" to="/">
-          <CIcon icon={logo} height={48} alt="Logo" />
-        </CHeaderBrand> */}
         <CHeaderNav className="d-none d-md-flex me-auto">
-          <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
-              Dashboard
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="/allUsers">Users</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
-          </CNavItem>
+         
+        
         </CHeaderNav>
         <CHeaderNav className="ms-3">
           <CNavItem>
@@ -73,12 +61,6 @@ const AppHeader = () => {
                   
               />
           </div>
-          {/* <div className="d-grid gap-2">
-            <Button variant="primary" onClick={handleLogout}>
-              Log out
-            </Button>
-          </div> */}
-            {/* <CNavLink href="/login">Sign in/ Register</CNavLink> */}
           </CNavItem>
         </CHeaderNav>
       </CContainer>
