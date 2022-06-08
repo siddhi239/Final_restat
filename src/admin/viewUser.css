@@ -1,0 +1,42 @@
+.mainwrap{
+    padding: 20px;
+}
+
+.merge{
+    display: grid;
+    grid-template-columns: min-content 1fr;
+}
+.image{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+.em{
+    padding-left: 20px;
+    padding-top: 40px;
+    font-size: large;
+}
+.n{
+    padding-top: 40px;
+    padding-left: 20px;
+    width: 400px;
+}
+.txt{
+    width:400px;
+    padding-top:20px;
+    padding-left:20px;
+    margin:0px
+}
+.clickbtn{
+    padding: 0px;
+    margin:0px;
+    color:red;
+    font-size: medium;
+    font-weight: 530;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    height: 55px;
+    width:140px
+}

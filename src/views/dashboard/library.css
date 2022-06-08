@@ -1,0 +1,33 @@
+
+.style{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+
+}
+.inline{
+    display: grid;
+  grid-template-columns: min-content 1fr;
+}
+.wrap{
+    
+    padding:20px;
+}
+.profile{
+    margin:0px;
+    padding-left:20px;
+}
+
+.abc{
+    text-align: center;
+    height: 20px;
+    width: 10px;
+}
+
+.stylemap{
+    margin-left:100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    display: inline-block !important;
+}

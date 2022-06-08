@@ -43,7 +43,7 @@ const AllUsers = () => {
                 <div className="wrapper d-flex flex-column min-vh-100 ">
                     <AppHeaderAdmin />
                     <h2>All Users</h2>
-                    <Table striped bordered hover >
+                    <Table  >
                     <thead >
                         <tr>
                           <th><center>Sr. No</center></th>
@@ -70,7 +70,7 @@ const AllUsers = () => {
                           <td><center>{u.CitiedBy}</center></td>
                           <td>
                             <center>
-                              <button variant="success" type="submit" onClick={() => navigate(`/viewUser/${u.id}`)} ><CIcon icon={cilInfo} /></button>&nbsp;&nbsp; 
+                              <button style={{background: 'none', border:'none', height:'40px',width:'40px'}} variant="success" type="submit" onClick={() => navigate(`/viewUser/${u.id}`)} ><CIcon icon={cilInfo} /></button>&nbsp;&nbsp; 
                               {/* <button  type="submit" onClick={ delUser(u.id) }><CIcon icon={cilTrash} /></button> */}
                             </center>
                           </td>
@@ -87,6 +87,7 @@ const AllUsers = () => {
                     
                     <AppFooter />
                 </div>  
+                
       </div>
    
   );

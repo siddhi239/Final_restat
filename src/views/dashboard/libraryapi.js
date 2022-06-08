@@ -6,7 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useUserAuth } from 'src/context/UserAuthContext'
 import { firestore } from 'src/firebase';
 import { addDoc, collection, getDocs, setDoc, doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore"
-
+import './library.css'
 
 const Libraryapi = () => {
 
@@ -78,107 +78,90 @@ const Libraryapi = () => {
       .finally(() => {
         setLoading(false);
       });
+    }
+      const countOfPapers = async () => {
 
-  }
-
-
-
-  const countOfPapers = async () => {
-
-    await setDoc(doc(firestore, "Total Paper per User", uid),
-      {
-        Name: n,
-        Count: totalPapers
-      })
-  }
-
-  const graphData = async () => {
-
-    await setDoc(doc(firestore, "Graph Data", uid),
-      {
-        2018: citedBy[0].citations,
-        2019: citedBy[1].citations,
-        2020: citedBy[2].citations,
-        2021: citedBy[3].citations,
-        2022: citedBy[4].citations,
-      })
-  }
-
-
-
-
-  return (
-    <div>
-      <AppSidebar />
-      <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-        <AppHeader />
-
-        <div style={{ display: 'inline-block', padding: '20px' }}>
-          <div>
-            <img style={{ borderRadius: '50%', height: '40px', width: '40px' }} src={user.photoURL} referrerPolicy="no-referrer" />
-
-            <div style={{ padding: '20px ' }}>
-              <h4>{profile.name}</h4>
-              <h6>{profile.affiliations}</h6>
-              <h6>{profile.email}</h6><br />
-            </div>
-
-            <div style={{ float: 'right' }}>
-              {
-                citedBy.map((i, index) =>
-                  <div key={index}>
-                    <hr />
-                    <p onClick={graphData}>Graph Data</p>
-                    <table>
-                      <tr>
-                        <thead>Year</thead>
-                        <thead>Citations</thead>
-                      </tr>
-                      <tr>
-                        <td>{i.year}</td>
-                        <td>{i.citations}</td>
-                      </tr>
-                    </table>
-                  </div>
-                )
-              }
-            </div>
-
-
-
-          </div>
-
-
+        await setDoc(doc(firestore, "Total Paper per User", uid),
           {
-            papers.map((item, index) =>
-              <div key={index}>
-                {console.log(totalPapers = totalPapers + 1)}
-                <hr />
-                <a href={item.link}> <h5>{item.title}</h5></a>
-                <h6>Authors: {item.authors}</h6>
-                <h6>Publication: {item.publication}</h6>
-                {item.cited_by !== undefined ? <div>
-                  <h6>Cited By: {item.cited_by.value}</h6>
-                </div> : null}
-                <h6>Year: {item.year}</h6>
+            Name: n,
+            Count: totalPapers
+          })
+      }
 
-              </div>
-            )
-          }
-          <p onClick={countOfPapers}>All Papers</p>
+      const graphData = async () => {
 
-
+        await setDoc(doc(firestore, "Graph Data", uid),
+          {
+            2018: citedBy[0].citations,
+            2019: citedBy[1].citations,
+            2020: citedBy[2].citations,
+            2021: citedBy[3].citations,
+            2022: citedBy[4].citations,
+          })
+      }
 
 
+    return (
+      <div>
+     <AppSidebar />
+                <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+                    <AppHeader />
+  
+                    <div className="wrap" style={{padding:'20px'}}>
+                      <div className="inline">
+                      <img className='style' src={ user.photoURL } referrerPolicy="no-referrer"/>
+                      <div className='profile'>
+                        <h4>{profile.name}</h4>
+                        <h6>{profile.affiliations}</h6>
+                        <h6>{profile.email}</h6><br/>
+                      </div>
+                    </div>
+                    <div >
+                    
+                  </div>
 
-        </div>
+                  
+                  {
+                    papers.map((item, index) =>
+                      <div key={index}>
+                        {console.log(totalPapers = totalPapers + 1)}
+                        <hr />
+                        <a href={item.link}> <h5>{item.title}</h5></a>
+                        <h6>Authors: {item.authors}</h6>
+                        <h6>Publication: {item.publication}</h6>
+                        {item.cited_by !== undefined ? <div>
+                          <h6>Cited By: {item.cited_by.value}</h6>
+                        </div> : null}
+                        <h6>Year: {item.year}</h6>
 
-        <AppFooter />
-      </div>
-    </div>
-
-
-  );
-}
-
-export default Libraryapi
+                      </div>
+                    )
+                  }
+                  <p onClick={countOfPapers}>All Papers</p>
+                  
+                  <b><p style={{marginLeft:'500px'}} onClick={graphData}>GraphData</p></b>
+                    {
+                      citedBy.map((i, index) =>
+                        <div className="stylemap" key={index}>                        
+                          <table className='abc'>
+                            <tr>
+                              <td>Year</td>
+                              <td>{i.year}</td>
+                            </tr>
+                            <tr>
+                            <td>Citations</td>
+                              <td>{i.citations}</td>
+                            </tr>
+                          </table>
+                        </div>
+                      )
+                    }
+                
+                    </div>
+                    <AppFooter />
+                </div>  
+                </div>
+    );
+  }
+ 
+export default Libraryapi;

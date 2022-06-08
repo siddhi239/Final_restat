@@ -130,11 +130,11 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div style={{padding:'10px'}}>
+              <div style={{padding:'10px'}} className="mainData">
               <h3 style={{padding:'10px'}}>{s}</h3>
                 {user.map((item, index) =>
                     <div key={index}>
-                    <p style={{padding:'10px'}}>
+                    <p >
                     <hr/> 
                     <a href= {item.link}> <h5>{item.title}</h5></a>
                      <h6>{item.publication_info.summary}</h6>
@@ -143,15 +143,14 @@ const Dashboard = () => {
                      {item.resources !== undefined ? <div>
                       {item.resources.map((d, index) => <div key={index}>
                           <p> 
-                            {d.title}<br/>       
-                          {d.link}
+                          &nbsp;<div style={{color:'blue'}}>[{d.file_format}] <a href= {d.link}>{d.title}</a></div>
                           </p>
                         </div>
                       )}
                     </div> : null}
                       
                     {item.inline_links.cited_by != undefined ? <div>
-                      {item.inline_links.cited_by.total}
+                      &nbsp;<b>Cited By: </b>{item.inline_links.cited_by.total}
                     </div> : null}
 
                      </p>
