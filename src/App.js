@@ -34,6 +34,7 @@ const ViewUser = React.lazy(() => import('./admin/viewUser'))
 const FetchData = React.lazy(() => import('./views/dashboard/dataFetch'))
 const Settings = React.lazy(() => import('./views/dashboard/Settings'))
 const Libraryapi = React.lazy(() => import('./views/dashboard/libraryapi'))
+const Charts = React.lazy(() => import('./views/dashboard/charts'))
 
 class App extends Component {
   render() {
@@ -55,6 +56,7 @@ class App extends Component {
               <Route exact path="/fetchData" name="Fetch Data" element={<ProtectedRoute><FetchData /> </ProtectedRoute>} />
               <Route exact path="/Settings" name="Settings" element={<ProtectedRoute><Settings /> </ProtectedRoute>} />
               <Route exact path="/libraryapi" name="Library API" element={<ProtectedRoute><Libraryapi /> </ProtectedRoute>} />
+              <Route exact path="/charts" name="Charts" element={<ProtectedRoute><Charts /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </Suspense>

@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { cilMagnifyingGlass } from '@coreui/icons';
 
+
 import {
   CAvatar,
   CButton,
@@ -119,6 +120,7 @@ const Dashboard = () => {
             // <link rel="stylesheet" href="mysearch.css">
             <div className="p-4 box">
               <h2 className="mb-3" style={{padding:'10px'}}><b>Dashboard</b></h2>
+              
               <div style={{padding:'10px'}}>
                 <div className="form-outline" id="same-line">
                   <input type="search" id="search" className="form-control" placeholder="Search Article or Name here..." onChange={(e) => {setS(e.target.value)}} aria-label="Search" />
