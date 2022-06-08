@@ -132,7 +132,7 @@ const Dashboard = () => {
               <h3 style={{padding:'10px'}}>{s}</h3>
                 {user.map((item, index) =>
                     <div key={index}>
-                    <p style={{padding:'10px'}}>
+                    <p >
                     <hr/> 
                     <a href= {item.link}> <h5>{item.title}</h5></a>
                      <h6>{item.publication_info.summary}</h6>

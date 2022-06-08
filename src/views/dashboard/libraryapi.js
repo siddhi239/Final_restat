@@ -117,26 +117,7 @@ const Libraryapi = () => {
                       </div>
                     </div>
                     <div >
-                    {
-                      citedBy.map((i, index) =>
-                        <div className="stylemap" key={index}>
-                          <hr />
-                          <p onClick={graphData}></p>
-                          <table className='abc'>
-                            <tr>
-                              <td>Year</td>
-                              <td>{i.year}</td>
-                            </tr>
-                            
-                            <tr>
-                            <td>Citations</td>
-                              <td>{i.citations}</td>
-                            </tr>
-                          </table>
-                        </div>
-                      )
-                    }
-
+                    
                   </div>
 
                   
@@ -157,7 +138,24 @@ const Libraryapi = () => {
                     )
                   }
                   <p onClick={countOfPapers}>All Papers</p>
-
+                  
+                  <b><p style={{marginLeft:'500px'}} onClick={graphData}>GraphData</p></b>
+                    {
+                      citedBy.map((i, index) =>
+                        <div className="stylemap" key={index}>                        
+                          <table className='abc'>
+                            <tr>
+                              <td>Year</td>
+                              <td>{i.year}</td>
+                            </tr>
+                            <tr>
+                            <td>Citations</td>
+                              <td>{i.citations}</td>
+                            </tr>
+                          </table>
+                        </div>
+                      )
+                    }
                 
                     </div>
                     <AppFooter />
