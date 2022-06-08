@@ -17,3 +17,16 @@
     margin:0px;
     padding-left:20px;
 }
+
+.abc{
+    text-align: center;
+    height: 20px;
+    width: 10px;
+}
+.stylemap{
+    margin-left:500px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    display: inline-block !important;
+}

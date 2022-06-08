@@ -40,8 +40,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'My Library',
-    to: '/mylibrary',
+    name: 'Library',
+    to: '/libraryapi',
     icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
     badge: {
       color: 'info',
@@ -65,14 +65,6 @@ const _nav = [
       color: 'info',
     },
   },
-  {
-    component: CNavItem,
-    name: 'Library demo',
-    to: '/libraryapi',
-    icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-    },
-  },
+
 ]
 export default _nav

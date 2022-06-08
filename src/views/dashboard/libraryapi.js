@@ -114,29 +114,32 @@ const Libraryapi = () => {
                         <h4>{profile.name}</h4>
                         <h6>{profile.affiliations}</h6>
                         <h6>{profile.email}</h6><br/>
-
                       </div>
                     </div>
-                    <div style={{ float: 'right' }}>
+                    <div >
                     {
                       citedBy.map((i, index) =>
-                        <div key={index}>
+                        <div className="stylemap" key={index}>
                           <hr />
-                          <p onClick={graphData}>Graph Data</p>
-                          <table>
+                          <p onClick={graphData}></p>
+                          <table className='abc'>
                             <tr>
-                              <thead>Year</thead>
-                              <thead>Citations</thead>
-                            </tr>
-                            <tr>
+                              <td>Year</td>
                               <td>{i.year}</td>
+                            </tr>
+                            
+                            <tr>
+                            <td>Citations</td>
                               <td>{i.citations}</td>
                             </tr>
                           </table>
                         </div>
                       )
                     }
+
                   </div>
+
+                  
                   {
                     papers.map((item, index) =>
                       <div key={index}>
@@ -154,6 +157,8 @@ const Libraryapi = () => {
                     )
                   }
                   <p onClick={countOfPapers}>All Papers</p>
+
+                
                     </div>
                     <AppFooter />
                 </div>  
