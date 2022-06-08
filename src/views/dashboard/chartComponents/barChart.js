@@ -10,10 +10,10 @@ import {Chart as ChartJS} from 'chart.js/auto'
 const BarChart = (chartData) => {
 
     return(
-        <h2>Hello</h2>
-        // <Bar data={chartData}/>
+        <Bar data={chartData}/>
     );
 
+    
 }
 
 export default BarChart

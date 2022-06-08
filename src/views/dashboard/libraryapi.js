@@ -25,6 +25,7 @@ const Libraryapi = () => {
   // const [u, setU] = useState(" ");
   var totalPapers = 0;
 
+  
   useEffect(() => {
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef)
@@ -47,6 +48,7 @@ const Libraryapi = () => {
     }
     )
   }, []);
+
 
   useEffect(() => {
     setLoading(true);
@@ -92,11 +94,11 @@ const Libraryapi = () => {
 
         await setDoc(doc(firestore, "Graph Data", uid),
           {
-            2018: citedBy[0].citations,
-            2019: citedBy[1].citations,
-            2020: citedBy[2].citations,
-            2021: citedBy[3].citations,
-            2022: citedBy[4].citations,
+            Year_18: citedBy[0].citations,
+            Year_19: citedBy[1].citations,
+            Year_20: citedBy[2].citations,
+            Year_21: citedBy[3].citations,
+            Year_22: citedBy[4].citations,
           })
       }
 
@@ -124,6 +126,7 @@ const Libraryapi = () => {
                   {
                     papers.map((item, index) =>
                       <div key={index}>
+                        
                         {console.log(totalPapers = totalPapers + 1)}
                         <hr />
                         <a href={item.link}> <h5>{item.title}</h5></a>
@@ -137,6 +140,7 @@ const Libraryapi = () => {
                       </div>
                     )
                   }
+                  <br/><br/>
                   <p onClick={countOfPapers}>All Papers</p>
                   
                   <b><p style={{marginLeft:'500px'}} onClick={graphData}>GraphData</p></b>
