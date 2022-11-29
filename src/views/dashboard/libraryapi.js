@@ -37,6 +37,7 @@ const Libraryapi = () => {
   }, []);
 
 
+
   useEffect(() => {
 
     users.map(item => {
@@ -81,6 +82,8 @@ const Libraryapi = () => {
         setLoading(false);
       });
     }
+
+    
       const countOfPapers = async () => {
 
         await setDoc(doc(firestore, "Total Paper per User", uid),
@@ -89,6 +92,7 @@ const Libraryapi = () => {
             Count: totalPapers
           })
       }
+      
 
       const graphData = async () => {
 

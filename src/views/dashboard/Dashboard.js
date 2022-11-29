@@ -1,62 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { AppContent, AppSidebar, AppFooter, AppHeader } from 'src/components/index'
 import { cilMagnifyingGlass } from '@coreui/icons';
-
-
-import {
-  CAvatar,
-  CButton,
-  CButtonGroup,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
-  CCol,
-  CProgress,
-  CRow,
-  CTable,
-  CTableBody,
-  CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
-} from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
-import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cibGoogle,
-  cibFacebook,
-  cibLinkedin,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
-  cibTwitter,
-  cilCloudDownload,
-  cilPeople,
-  cilUser,
-  cilUserFemale,
-} from '@coreui/icons'
-
-import avatar1 from 'src/assets/images/avatars/1.jpg'
-import avatar2 from 'src/assets/images/avatars/2.jpg'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
-import avatar4 from 'src/assets/images/avatars/4.jpg'
-import avatar5 from 'src/assets/images/avatars/5.jpg'
-import avatar6 from 'src/assets/images/avatars/6.jpg'
 import './dashboard.css'
-
-import WidgetsBrand from '../widgets/WidgetsBrand'
-import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
 const Dashboard = () => {
   const [user, setUser] = useState([])
@@ -78,15 +25,11 @@ const Dashboard = () => {
       }).then(data => {
          setUser(data.organic_results);
          console.log(data.organic_results);
-        // setCite(data.organic_results.inline_links.cited_by);
-        //setResr(data.organic_results.resources[0]);
       })
       .catch(err => {
          console.log(err)
       })
   }
-
-
   const fetchData2 = () => {
     const url2 = `https://serpapi.com/search.json?engine=google_scholar&q=${s}&hl=en&start=20&api_key=452c8d62a3109b7126306267dc125e951050339de3b68057816fdd0893fbd2f9`;
     
@@ -98,17 +41,13 @@ const Dashboard = () => {
       }).then(data => {
          setUser(data.organic_results);
         setCite(data.organic_results.inline_links.cited_by);
-        // console.log(data.organic_results.resources[0]);
+       
         setResr(data.organic_results.resources[0]);
       })
       .catch(err => {
          console.log(err)
       })
   }
-  // useEffect(() => {
-  //   setLoading(true);
-  //   fetchData()
-  // })
 
   return (
     <>
@@ -117,7 +56,6 @@ const Dashboard = () => {
         <div className="wrapper d-flex flex-column min-vh-100 bg-light">
           <AppHeader />
           {
-            // <link rel="stylesheet" href="mysearch.css">
             <div className="p-4 box">
               <h2 className="mb-3" style={{padding:'10px'}}><b>Dashboard</b></h2>
               

@@ -14,11 +14,6 @@ const Charts = () => {
     const [users, setUsers] = useState([]);
     const [citedgd, setcitedgd] = useState(" ");
     const docRef = collection(firestore, "Graph Data");
-    const [y_18, sety_18] = useState(" ");
-    const [y_19, sety_19] = useState(" ");
-    const [y_20, sety_20] = useState(" ");
-    const [y_21, sety_21] = useState(" ");
-    const [y_22, sety_22] = useState(" ");
     const [loading, setLoading] = useState(false);
     const [chartData, setChartData] = useState([]);
 
@@ -33,6 +28,8 @@ const Charts = () => {
 
         getUsers();
     }, []);
+
+    console.log(users)
 
     useEffect(() => {
         for (let item of users) {
@@ -93,7 +90,7 @@ const Charts = () => {
             {chartData.length != 0 ? <Bar data={citationData} options={{ maintainAspectRatio: false }} /> : null}
 
             {/* <BarChart charData={citationData}/> */}
-            {y_18}
+    
         </div>
 
 

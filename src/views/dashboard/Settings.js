@@ -31,19 +31,6 @@ const Settings = () => {
     
   }
 
-  // const delDoc = (uid) => {
-  //   firestore.collection("myprofile").doc(uid).delete()
-  //   .then(() => {
-  //     console.log("doc deleted succesfully")
-  //   }).catch((error) => {
-  //     console.log('Error deleting user:', error);
-  //   });
-
-  // }
-
-  
-  
-
   return (
       <div>
         <AppSidebar />
